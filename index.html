@@ -1569,6 +1569,8 @@ let DB = {
   sales:[], targets:{}, checklist:{}, briefing:[],
   outlets:['DCR Roastery'],
   kpi:{}, // KPI module: { [outlet_period_divId]: { scores:{}, formData:{}, notes:'' } }
+  inventory:{}, // Inventory module: { [outlet][divisi][dateKey][itemName]: rec }
+  masterItems:{}, // Master items: { BAR:[], KITCHEN:[], FLOOR:[] }
   settings:{ pins:{ admin:'1234', ops:'5678', purchasing:'9999' } }
 };
 
