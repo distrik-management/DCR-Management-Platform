@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Distrik Coffee Roaster — Management Platform</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#c9972b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DCR">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
@@ -388,6 +393,50 @@ textarea{resize:vertical;line-height:1.5}
 .po-item-opt-cat{font-size:9px;color:var(--text3);font-family:var(--fm);flex-shrink:0;white-space:nowrap}
 .po-divisi-banner{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px;margin-bottom:10px;font-size:11px;color:var(--gold);display:flex;align-items:center;gap:6px}
 
+/* CASH & BANK LEDGER */
+.ledger-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.ledger-balance{background:rgba(212,151,74,.08);border:1px solid var(--gold);border-radius:var(--r2);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.ledger-bal-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.ledger-bal-val{font-size:22px;font-family:var(--fm);font-weight:700;color:var(--gold)}
+.ledger-tbl{width:100%;border-collapse:collapse;font-size:11px}
+.ledger-tbl th{color:var(--text3);font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:.04em}
+.ledger-tbl td{padding:8px 8px;border-bottom:1px solid rgba(74,52,32,.2);vertical-align:middle}
+.ledger-tbl tr:last-child td{border-bottom:none}
+.ledger-tbl .in{color:var(--green)}
+.ledger-tbl .out{color:var(--red)}
+.ledger-tbl .transfer{color:var(--blue)}
+.ledger-pill{display:inline-block;padding:2px 7px;border-radius:999px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.pill-in{background:rgba(74,160,74,.15);color:var(--green)}
+.pill-out{background:rgba(220,80,60,.15);color:var(--red)}
+.pill-transfer{background:rgba(60,120,200,.15);color:var(--blue)}
+.fin-summary-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:16px;margin-bottom:12px}
+.fin-total-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px}
+.fin-total-row:last-child{border-bottom:none}
+.fin-grand{background:rgba(212,151,74,.08);border:1px solid var(--gold);border-radius:var(--r);padding:14px 16px;text-align:center;font-family:var(--fm);font-size:1.6rem;font-weight:700;color:var(--gold);margin-top:10px}
+.btn-xs{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:3px 6px;font-size:11px;cursor:pointer;color:var(--text2);transition:all .15s}
+.btn-xs:hover{background:var(--bg3);color:var(--text1)}
+.btn-del{background:rgba(220,80,60,.12);border-color:rgba(220,80,60,.3);color:var(--red)}
+.btn-del:hover{background:var(--red);color:#fff}
+.btn-secondary{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:8px 14px;font-size:12px;cursor:pointer;color:var(--text1);transition:all .15s}
+.btn-secondary:hover{background:var(--bg2);border-color:var(--gold);color:var(--gold)}
+/* CL EDITOR */
+.cle-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.cle-sec-head{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg3);border-bottom:1px solid var(--border)}
+.cle-sec-title{flex:1;background:transparent;border:none;color:var(--cream);font-size:13px;font-weight:600;outline:none;font-family:inherit}
+.cle-sec-title:focus{color:var(--gold)}
+.cle-items{padding:8px 12px}
+.cle-item-row{display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(74,52,32,.2)}
+.cle-item-row:last-child{border-bottom:none}
+.cle-item-inp{flex:1;background:transparent;border:none;color:var(--cream);font-size:12px;outline:none;font-family:inherit;line-height:1.4}
+.cle-item-inp:focus{color:var(--gold)}
+.cle-add-item{display:flex;align-items:center;gap:6px;padding:7px 0 2px}
+.cle-add-inp{flex:1;background:var(--bg3);border:1px dashed var(--border2);border-radius:4px;color:var(--cream);font-size:12px;padding:5px 8px;outline:none;font-family:inherit}
+.cle-add-inp:focus{border-color:var(--gold);color:var(--gold)}
+.cle-add-btn{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-size:11px;cursor:pointer;color:var(--text2);white-space:nowrap}
+.cle-add-btn:hover{border-color:var(--gold);color:var(--gold)}
+.cle-add-sec{margin-top:10px;display:flex;gap:8px}
+.cle-add-sec input{flex:1;background:var(--bg3);border:1px dashed var(--border2);border-radius:4px;color:var(--cream);font-size:12px;padding:6px 10px;outline:none;font-family:inherit}
+.cle-add-sec input:focus{border-color:var(--gold)}
 /* INVENTORY */
 .inv-stat-tile{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px}
 .inv-stat-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
@@ -599,6 +648,9 @@ textarea{resize:vertical;line-height:1.5}
   <div class="sb-item sb-item-sales" data-page="target" onclick="nav(this)"><span class="sb-icon">🎯</span>Target Bulanan</div>
   <div class="sb-item sb-item-sales" data-page="input-harian" onclick="nav(this)"><span class="sb-icon">📝</span>Input Harian</div>
   <div class="sb-item sb-item-sales" data-page="pnl" onclick="nav(this)"><span class="sb-icon">📊</span>PnL Report</div>
+  <div class="sb-item sb-item-sales" data-page="cash-ledger" onclick="nav(this)"><span class="sb-icon">💵</span>Cash Ledger</div>
+  <div class="sb-item sb-item-sales" data-page="bank-ledger" onclick="nav(this)"><span class="sb-icon">🏦</span>Bank Ledger</div>
+  <div class="sb-item sb-item-sales" data-page="finance-summary" onclick="nav(this)"><span class="sb-icon">📋</span>Ringkasan Keuangan</div>
   <div class="sb-item sb-item-sales" data-page="performance" onclick="nav(this)"><span class="sb-icon">📈</span>Performance MTD</div>
   <div class="sb-item sb-item-sales" data-page="traceback" onclick="nav(this)"><span class="sb-icon">🔍</span>Traceback</div>
   <div class="sb-rule sb-section-sales"></div>
@@ -635,6 +687,7 @@ textarea{resize:vertical;line-height:1.5}
   <div class="sb-item ops-only" data-page="po-submit" onclick="navPO(this)" id="po-menu-submit"><span class="sb-icon">✏️</span>Buat PO</div>
   <div class="sb-item" data-page="po-approval" onclick="navPO(this)" id="po-menu-approval"><span class="sb-icon">✅</span>Approval Queue<span class="sb-badge" id="po-badge-approval">0</span></div>
   <div class="sb-item" data-page="po-charts" onclick="navPO(this)"><span class="sb-icon">📈</span>Performa PO</div>
+  <div class="sb-item admin-only" style="font-size:10px;color:var(--cream4);padding:5px 14px" onclick="migrateLegacyPO(false)" title="Pindahkan data PO dari sistem lama jika ada"><span class="sb-icon" style="font-size:11px">🔄</span>Pindahkan Data Lama</div>
   <div class="sb-rule" style="margin-bottom:2px"></div>
   <div style="padding:3px 14px 5px">
     <div style="font-size:8px;color:var(--cream4);font-family:var(--fm);letter-spacing:.06em;margin-bottom:5px">FILTER STATUS</div>
@@ -857,6 +910,7 @@ textarea{resize:vertical;line-height:1.5}
     <div><div class="topbar-title">Opening Checklist</div><div class="topbar-sub" id="opening-lbl">—</div></div>
     <div class="spacer"></div>
     <input type="date" id="opening-date" class="sel" onchange="renderChecklist('opening')">
+    <button class="btn btn-ghost btn-sm admin-only" onclick="openClEditor('opening')" style="display:none">✏️ Edit Template</button>
     <button class="btn btn-ghost btn-sm admin-only" onclick="resetCL('opening')" style="display:none">↺ Reset</button>
   </div>
   <div class="scroll"><div id="opening-content"></div></div>
@@ -866,6 +920,7 @@ textarea{resize:vertical;line-height:1.5}
     <div><div class="topbar-title">Mid Shift Checklist</div><div class="topbar-sub" id="midshift-lbl">—</div></div>
     <div class="spacer"></div>
     <input type="date" id="midshift-date" class="sel" onchange="renderChecklist('midshift')">
+    <button class="btn btn-ghost btn-sm admin-only" onclick="openClEditor('midshift')" style="display:none">✏️ Edit Template</button>
     <button class="btn btn-ghost btn-sm admin-only" onclick="resetCL('midshift')" style="display:none">↺ Reset</button>
   </div>
   <div class="scroll"><div id="midshift-content"></div></div>
@@ -875,6 +930,7 @@ textarea{resize:vertical;line-height:1.5}
     <div><div class="topbar-title">Closing Checklist</div><div class="topbar-sub" id="closing-lbl">—</div></div>
     <div class="spacer"></div>
     <input type="date" id="closing-date" class="sel" onchange="renderChecklist('closing')">
+    <button class="btn btn-ghost btn-sm admin-only" onclick="openClEditor('closing')" style="display:none">✏️ Edit Template</button>
     <button class="btn btn-ghost btn-sm admin-only" onclick="resetCL('closing')" style="display:none">↺ Reset</button>
   </div>
   <div class="scroll"><div id="closing-content"></div></div>
@@ -884,6 +940,7 @@ textarea{resize:vertical;line-height:1.5}
     <div><div class="topbar-title">Weekly Checklist Kebersihan</div><div class="topbar-sub" id="weekly-lbl">—</div></div>
     <div class="spacer"></div>
     <input type="date" id="weekly-date" class="sel" onchange="renderWeekly()">
+    <button class="btn btn-ghost btn-sm admin-only" onclick="openClEditor('weekly')" style="display:none">✏️ Edit Template</button>
   </div>
   <div class="scroll"><div id="weekly-content"></div></div>
 </div>
@@ -892,6 +949,7 @@ textarea{resize:vertical;line-height:1.5}
     <div><div class="topbar-title">Monthly Checklist</div><div class="topbar-sub" id="monthly-lbl">—</div></div>
     <div class="spacer"></div>
     <input type="month" id="monthly-month" class="sel" onchange="renderMonthly()">
+    <button class="btn btn-ghost btn-sm admin-only" onclick="openClEditor('monthly')" style="display:none">✏️ Edit Template</button>
   </div>
   <div class="scroll"><div id="monthly-content"></div></div>
 </div>
@@ -937,6 +995,7 @@ textarea{resize:vertical;line-height:1.5}
   <div class="topbar">
     <div><div class="topbar-title">Dashboard</div><div class="topbar-sub" id="po-dash-period">—</div></div>
     <div class="spacer"></div>
+    <button class="btn btn-ghost btn-sm" onclick="renderDashboard()" title="Refresh dashboard">↺</button>
     <button class="btn btn-primary" id="po-dash-create-btn" onclick="navPO(document.querySelector('[data-page=submit]'))" style="display:none">+ Buat PO</button>
   </div>
   <div class="scroll">
@@ -1219,10 +1278,81 @@ textarea{resize:vertical;line-height:1.5}
   </div>
 </div>
 
+<!-- ══════════════ CASH LEDGER PAGE ══════════════ -->
+<div class="page" id="page-cash-ledger">
+  <div class="topbar"><div><div class="topbar-title">💵 Cash Ledger</div><div class="topbar-sub">Pencatatan keluar masuk uang tunai</div></div>
+    <button class="btn btn-primary btn-sm" onclick="openLedgerModal('cash')">+ Transaksi</button></div>
+  <div class="scroll">
+    <div class="ledger-balance">
+      <div><div class="ledger-bal-label">Saldo Cash</div><div class="ledger-bal-val" id="cash-saldo">Rp 0</div></div>
+      <div style="text-align:right"><div class="ledger-bal-label">Total Masuk</div><div style="font-size:13px;font-family:var(--fm);color:var(--green)" id="cash-total-in">Rp 0</div>
+      <div class="ledger-bal-label" style="margin-top:4px">Total Keluar</div><div style="font-size:13px;font-family:var(--fm);color:var(--red)" id="cash-total-out">Rp 0</div></div>
+    </div>
+    <div style="overflow-x:auto"><table class="ledger-tbl"><thead><tr>
+      <th>Tanggal</th><th>Keterangan</th><th>Tipe</th><th style="text-align:right">Debit (Masuk)</th><th style="text-align:right">Kredit (Keluar)</th><th style="text-align:right">Saldo</th><th></th>
+    </tr></thead><tbody id="cash-ledger-body"></tbody></table></div>
+  </div>
+</div>
+
+<!-- ══════════════ BANK LEDGER PAGE ══════════════ -->
+<div class="page" id="page-bank-ledger">
+  <div class="topbar"><div><div class="topbar-title">🏦 Bank Ledger</div><div class="topbar-sub">Pencatatan keluar masuk rekening bank</div></div>
+    <button class="btn btn-primary btn-sm" onclick="openLedgerModal('bank')">+ Transaksi</button></div>
+  <div class="scroll">
+    <div class="ledger-balance">
+      <div><div class="ledger-bal-label">Saldo Bank</div><div class="ledger-bal-val" id="bank-saldo">Rp 0</div></div>
+      <div style="text-align:right"><div class="ledger-bal-label">Total Masuk</div><div style="font-size:13px;font-family:var(--fm);color:var(--green)" id="bank-total-in">Rp 0</div>
+      <div class="ledger-bal-label" style="margin-top:4px">Total Keluar</div><div style="font-size:13px;font-family:var(--fm);color:var(--red)" id="bank-total-out">Rp 0</div></div>
+    </div>
+    <div style="overflow-x:auto"><table class="ledger-tbl"><thead><tr>
+      <th>Tanggal</th><th>Keterangan</th><th>Tipe</th><th>Bank/Rek</th><th style="text-align:right">Debit (Masuk)</th><th style="text-align:right">Kredit (Keluar)</th><th style="text-align:right">Saldo</th><th></th>
+    </tr></thead><tbody id="bank-ledger-body"></tbody></table></div>
+  </div>
+</div>
+
+<!-- ══════════════ FINANCE SUMMARY PAGE ══════════════ -->
+<div class="page" id="page-finance-summary">
+  <div class="topbar"><div><div class="topbar-title">📋 Ringkasan Keuangan</div><div class="topbar-sub">Posisi Cash &amp; Bank</div></div></div>
+  <div class="scroll" id="finance-summary-content"></div>
+</div>
+
 </div><!-- /main -->
 </div><!-- /app -->
 
 <!-- ═══ MODALS ═══ -->
+
+<!-- MODAL: LEDGER TRANSACTION -->
+<div class="mbg" id="m-ledger" onclick="if(event.target===this)closeMod('m-ledger')">
+<div class="modal narrow">
+  <div class="modal-title" id="ledger-modal-title">Tambah Transaksi</div>
+  <input type="hidden" id="ledger-mode" value="cash">
+  <input type="hidden" id="ledger-edit-id" value="">
+  <div class="mf"><label class="ml">Tanggal</label><input type="date" id="ledger-date" class="inp"></div>
+  <div class="mf"><label class="ml">Tipe Transaksi</label>
+    <select id="ledger-type" class="sel" onchange="ledgerTypeChanged()">
+      <option value="in">💚 Pemasukan (Debit)</option>
+      <option value="out">🔴 Pengeluaran (Kredit)</option>
+      <option value="transfer">🔄 Transfer</option>
+    </select>
+  </div>
+  <div class="mf" id="ledger-bank-row" style="display:none"><label class="ml">Bank / Rekening</label><input type="text" id="ledger-bank" class="inp" placeholder="BCA, Mandiri, BRI..."></div>
+  <div class="mf"><label class="ml">Keterangan</label><input type="text" id="ledger-desc" class="inp" placeholder="Contoh: Setoran penjualan, Bayar supplier..."></div>
+  <div class="mf"><label class="ml">Jumlah (Rp)</label><input type="number" id="ledger-amount" class="inp" min="0" placeholder="0"></div>
+  <div class="mf"><label class="ml">Referensi (opsional)</label><input type="text" id="ledger-ref" class="inp" placeholder="No. invoice, nota..."></div>
+  <div class="mf"><button class="btn btn-ghost" onclick="closeMod('m-ledger')">Batal</button><button class="btn btn-primary" onclick="saveLedgerTx()">💾 Simpan</button></div>
+</div></div>
+
+<!-- MODAL: CHECKLIST TEMPLATE EDITOR -->
+<div class="mbg" id="m-cl-editor" onclick="if(event.target===this)closeMod('m-cl-editor')">
+<div class="modal wide" style="max-height:85vh;display:flex;flex-direction:column">
+  <div class="modal-title">✏️ Edit Template Checklist — <span id="cle-title"></span></div>
+  <div style="flex:1;overflow-y:auto;padding-bottom:8px" id="cle-body"></div>
+  <div class="mf" style="border-top:1px solid rgba(74,52,32,.4);padding-top:12px;gap:8px;flex-wrap:wrap">
+    <button class="btn btn-ghost" onclick="closeMod('m-cl-editor')">Batal</button>
+    <button class="btn btn-ghost btn-sm" onclick="clEditorResetDefault()">↺ Kembalikan Default</button>
+    <button class="btn btn-primary" onclick="saveClEditor()">💾 Simpan Template</button>
+  </div>
+</div></div>
 
 <!-- KARYAWAN -->
 <div class="mbg" id="m-karyawan"><div class="modal wide">
@@ -1571,8 +1701,12 @@ let DB = {
   kpi:{}, // KPI module: { [outlet_period_divId]: { scores:{}, formData:{}, notes:'' } }
   inventory:{}, // Inventory module: { [outlet][divisi][dateKey][itemName]: rec }
   masterItems:{}, // Master items: { BAR:[], KITCHEN:[], FLOOR:[] }
+  cashLedger:[],  // [{id,date,type:'in'|'out'|'transfer',desc,amount,ref,createdAt}]
+  bankLedger:[],  // [{id,date,type:'in'|'out'|'transfer',desc,amount,ref,bank,createdAt}]
+  clTemplates:{}, // Custom checklist templates: { opening:[], midshift:[], closing:[], weekly:[], monthly:[] }
   settings:{ pins:{ admin:'1234', ops:'5678', purchasing:'9999' } }
 };
+let OUTLETS = [...DB.outlets]; // Mirror of DB.outlets — updated when Firebase syncs
 
 // ── DEFAULTS ──
 const SOP_UMUM_DEFAULT = [
@@ -1674,9 +1808,11 @@ const g   = id => document.getElementById(id);
 const rp  = n => 'Rp ' + Math.round(n||0).toLocaleString('id-ID');
 const fmtRp = rp;
 const rpK = n => n>=1e9?'Rp '+(n/1e9).toFixed(1)+'M':n>=1e6?'Rp '+(n/1e6).toFixed(1)+'jt':rp(n);
-const today     = () => new Date().toISOString().slice(0,10);
-const thisMonth = () => new Date().toISOString().slice(0,7);
+Date.prototype.toLocalISO=function(){return new Date(this.getTime()-this.getTimezoneOffset()*60000).toISOString();};
+const today     = () => new Date().toLocalISO().slice(0,10);
+const thisMonth = () => new Date().toLocalISO().slice(0,7);
 const uid  = () => Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const toArr=v=>Array.isArray(v)?v.filter(x=>x!=null):(v&&typeof v==='object'?Object.values(v):[]);
 const fmtDate = d => { if(!d) return '—'; const dt=typeof d==='number'?new Date(d):new Date(d+'T00:00:00'); return isNaN(dt)?'—':dt.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}); };
 const fmtTS = ts => { if(!ts) return '—'; const d=new Date(ts); return isNaN(d)?'—':d.toLocaleDateString('id-ID',{day:'numeric',month:'short'})+' '+d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}); };
 const shortMonth = m => { if(!m) return '—'; const [y,mo]=m.split('-'); return ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'][parseInt(mo)-1]+' '+y; };
@@ -1711,6 +1847,8 @@ function checkPIN() {
     } else {
       nav(document.querySelector('[data-page="sop-umum"]'));
     }
+    // If PO data already loaded (Firebase had cached data), trigger badge update immediately
+    if(fbPoReady) { updateBadges(); }
   } else {
     g('pin-err').textContent='PIN salah, coba lagi'; setTimeout(clearPIN,500);
   }
@@ -1818,6 +1956,7 @@ function nav(el) {
     'kpi-dashboard':renderKPIDashboard,'kpi-form':renderKPIFormPage,
     'inv-dashboard':renderInvDashboard,'inv-input':renderInvInputTable,'inv-trace':renderInvTrace,
     'master-items':renderMasterItems,
+    'cash-ledger':renderCashLedger,'bank-ledger':renderBankLedger,'finance-summary':renderFinanceSummary,
   };
   // Inventory: set date default if empty
   if(page==='inv-input'){const el=g('inv-input-date');if(el&&!el.value)el.value=today();}
@@ -2175,7 +2314,162 @@ function renderSalesList() {
   g('sf-ttrx').textContent=tT; g('sf-tavg').textContent=tT?rp(tS/tT):'—';
 }
 
+// ══════════════ CASH & BANK LEDGER ══════════════
+function openLedgerModal(mode, editId=''){
+  g('ledger-mode').value=mode;
+  g('ledger-edit-id').value=editId;
+  g('ledger-modal-title').textContent=(mode==='cash'?'💵 Transaksi Kas':'🏦 Transaksi Bank')+(editId?' — Edit':' — Tambah');
+  if(editId){
+    const arr=mode==='cash'?DB.cashLedger:DB.bankLedger;
+    const tx=arr.find(t=>t.id===editId);
+    if(tx){
+      g('ledger-date').value=tx.date||'';
+      g('ledger-type').value=tx.type||'in';
+      g('ledger-desc').value=tx.desc||'';
+      g('ledger-amount').value=tx.amount||0;
+      g('ledger-ref').value=tx.ref||'';
+      if(g('ledger-bank')) g('ledger-bank').value=tx.bank||'';
+      ledgerTypeChanged();
+    }
+  } else {
+    g('ledger-date').value=today();
+    g('ledger-type').value='in';
+    g('ledger-desc').value='';
+    g('ledger-amount').value='';
+    g('ledger-ref').value='';
+    ledgerTypeChanged();
+  }
+  openMod('m-ledger');
+}
+function ledgerTypeChanged(){
+  const t=g('ledger-type')?.value;
+  const bankRow=g('ledger-bank-row');
+  if(bankRow) bankRow.style.display=t==='transfer'?'':'none';
+}
+function saveLedgerTx(){
+  const mode=g('ledger-mode').value;
+  const editId=g('ledger-edit-id').value;
+  const date=g('ledger-date').value;
+  const type=g('ledger-type').value;
+  const desc=g('ledger-desc').value.trim();
+  const amount=parseFloat(g('ledger-amount').value)||0;
+  const ref=g('ledger-ref')?.value||'';
+  const bank=g('ledger-bank')?.value||'';
+  if(!date||!desc||!amount){alert('Isi semua field!');return;}
+  const tx={id:editId||Date.now().toString(36)+Math.random().toString(36).slice(2,6),date,type,desc,amount,ref,bank};
+  if(mode==='cash'){
+    if(editId) DB.cashLedger=DB.cashLedger.map(t=>t.id===editId?tx:t);
+    else DB.cashLedger.push(tx);
+  } else {
+    if(editId) DB.bankLedger=DB.bankLedger.map(t=>t.id===editId?tx:t);
+    else DB.bankLedger.push(tx);
+  }
+  pushFB();
+  closeMod('m-ledger');
+  if(mode==='cash') renderCashLedger(); else renderBankLedger();
+  renderFinanceSummary();
+}
+function deleteLedgerTx(mode,id){
+  if(!confirm('Hapus transaksi ini?'))return;
+  if(mode==='cash') DB.cashLedger=DB.cashLedger.filter(t=>t.id!==id);
+  else DB.bankLedger=DB.bankLedger.filter(t=>t.id!==id);
+  pushFB();
+  if(mode==='cash') renderCashLedger(); else renderBankLedger();
+  renderFinanceSummary();
+}
+function _buildLedgerRows(arr,mode){
+  const sorted=[...arr].sort((a,b)=>a.date.localeCompare(b.date));
+  let bal=0;
+  const colCount=mode==='bank'?8:7;
+  return sorted.map(tx=>{
+    if(tx.type==='in') bal+=tx.amount;
+    else if(tx.type==='out') bal-=tx.amount;
+    const typeLabel=tx.type==='in'?'<span class="pill pill-in">Masuk</span>':tx.type==='out'?'<span class="pill pill-out">Keluar</span>':'<span class="pill pill-tf">Transfer</span>';
+    const inAmt=tx.type==='in'?`<span style="color:var(--green)">${rp(tx.amount)}</span>`:'—';
+    const outAmt=tx.type==='out'?`<span style="color:var(--red)">${rp(tx.amount)}</span>`:tx.type==='transfer'?`<span style="color:var(--blue)">${rp(tx.amount)}</span>`:'—';
+    const bankCol=mode==='bank'?`<td style="color:var(--text3);font-size:11px">${tx.bank||tx.ref||'—'}</td>`:'';
+    return`<tr>
+      <td>${tx.date}</td>
+      <td>${typeLabel}</td>
+      <td>${tx.desc}</td>
+      ${bankCol}
+      <td style="text-align:right">${inAmt}</td>
+      <td style="text-align:right">${outAmt}</td>
+      <td style="text-align:right;font-weight:600;color:${bal>=0?'var(--gold)':'var(--red)'}">${rp(bal)}</td>
+      <td style="text-align:center">
+        <button class="btn-xs" onclick="openLedgerModal('${mode}','${tx.id}')">✏️</button>
+        <button class="btn-xs btn-del" onclick="deleteLedgerTx('${mode}','${tx.id}')">🗑</button>
+      </td>
+    </tr>`;
+  }).join('')||`<tr><td colspan="${colCount}" style="text-align:center;padding:20px;color:var(--text3)">Belum ada transaksi</td></tr>`;
+}
+function _calcLedgerBalance(arr){
+  return arr.reduce((s,t)=>t.type==='in'?s+t.amount:t.type==='out'?s-t.amount:s,0);
+}
+function renderCashLedger(){
+  const arr=DB.cashLedger||[];
+  const bal=_calcLedgerBalance(arr);
+  const tIn=arr.filter(t=>t.type==='in').reduce((s,t)=>s+t.amount,0);
+  const tOut=arr.filter(t=>t.type==='out').reduce((s,t)=>s+t.amount,0);
+  const sEl=g('cash-saldo'); if(sEl){sEl.textContent=rp(bal);sEl.style.color=bal>=0?'var(--gold)':'var(--red)';}
+  const tiEl=g('cash-total-in'); if(tiEl) tiEl.textContent=rp(tIn);
+  const toEl=g('cash-total-out'); if(toEl) toEl.textContent=rp(tOut);
+  const bodyEl=g('cash-ledger-body'); if(bodyEl) bodyEl.innerHTML=_buildLedgerRows(arr,'cash');
+}
+function renderBankLedger(){
+  const arr=DB.bankLedger||[];
+  const bal=_calcLedgerBalance(arr);
+  const tIn=arr.filter(t=>t.type==='in').reduce((s,t)=>s+t.amount,0);
+  const tOut=arr.filter(t=>t.type==='out').reduce((s,t)=>s+t.amount,0);
+  const sEl=g('bank-saldo'); if(sEl){sEl.textContent=rp(bal);sEl.style.color=bal>=0?'var(--gold)':'var(--red)';}
+  const tiEl=g('bank-total-in'); if(tiEl) tiEl.textContent=rp(tIn);
+  const toEl=g('bank-total-out'); if(toEl) toEl.textContent=rp(tOut);
+  const bodyEl=g('bank-ledger-body'); if(bodyEl) bodyEl.innerHTML=_buildLedgerRows(arr,'bank');
+}
+function renderFinanceSummary(){
+  const cashBal=_calcLedgerBalance(DB.cashLedger||[]);
+  const bankBal=_calcLedgerBalance(DB.bankLedger||[]);
+  const total=cashBal+bankBal;
+  const el=g('finance-summary-content');
+  if(!el)return;
+  el.innerHTML=`
+    <div class="fin-cards">
+      <div class="fin-card">
+        <div class="fin-card-label">💵 Saldo Kas</div>
+        <div class="fin-card-val" style="color:${cashBal>=0?'var(--gold)':'var(--red)'}">${rp(cashBal)}</div>
+        <div class="fin-card-sub">${(DB.cashLedger||[]).length} transaksi</div>
+      </div>
+      <div class="fin-card">
+        <div class="fin-card-label">🏦 Saldo Bank</div>
+        <div class="fin-card-val" style="color:${bankBal>=0?'var(--gold)':'var(--red)'}">${rp(bankBal)}</div>
+        <div class="fin-card-sub">${(DB.bankLedger||[]).length} transaksi</div>
+      </div>
+    </div>
+    <div class="fin-grand">
+      <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Total Aset Likuid</div>
+      <div style="font-size:28px;font-weight:700;color:${total>=0?'var(--gold)':'var(--red)'}">${rp(total)}</div>
+    </div>`;
+}
+
 // ══════════════ SALES: PnL ══════════════
+function calcSpoilValue(mo){
+  let total=0;
+  const outlets=OUTLETS||[];
+  const divs=['BAR','KITCHEN','FLOOR'];
+  outlets.forEach(outlet=>{
+    divs.forEach(div=>{
+      const root=(DB.inventory?.[outlet]?.[div])||{};
+      Object.entries(root).forEach(([dk,dayData])=>{
+        const dStr=dk.slice(0,4)+'-'+dk.slice(4,6)+'-'+dk.slice(6,8);
+        if(!dStr.startsWith(mo))return;
+        Object.values(dayData).forEach(rec=>{
+          total+=(rec.spoil||0)*(rec.harga||0);
+        });
+      });
+    });
+  });
+  return total;
+}
 function renderPnL() {
   const mo=g('pnl-month')?.value||thisMonth();
   g('pnl-period-lbl').textContent=shortMonth(mo);
@@ -2183,7 +2477,8 @@ function renderPnL() {
   const tgt=DB.targets[mo]||{};
   const tS=sales.reduce((a,s)=>a+s.sales,0), tM=sales.reduce((a,s)=>a+s.modal,0);
   const tE=sales.reduce((a,s)=>a+(s.totalExp||0),0);
-  const gross=tS-tM, net=gross-tE;
+  const tSpoil=calcSpoilValue(mo);
+  const gross=tS-tM, net=gross-tE-tSpoil;
   const gm=tS?gross/tS*100:0, nm=tS?net/tS*100:0;
   const expMap={};
   sales.forEach(s=>(s.expenses||[]).forEach(e=>{expMap[e.desc]=(expMap[e.desc]||0)+e.amt;}));
@@ -2196,6 +2491,7 @@ function renderPnL() {
     <div class="pnl-section"><div style="font-size:11px;font-weight:700;color:var(--cream3);margin-bottom:9px;text-transform:uppercase;letter-spacing:.06em">💸 Pengeluaran</div>
       <div class="pnl-row"><span class="pnl-lbl">HPP / Modal Bahan</span><span class="pnl-val" style="color:var(--terra)">(${rp(tM)})</span></div>
       <div class="pnl-row"><span class="pnl-lbl">Petty Cash & Expenses</span><span class="pnl-val" style="color:var(--terra)">(${rp(tE)})</span></div>
+      <div class="pnl-row"><span class="pnl-lbl">Nilai Spoil Inventory</span><span class="pnl-val" style="color:var(--red)">(${rp(tSpoil)})</span></div>
       <div class="pnl-row"><span class="pnl-lbl">Budget Petty Cash</span><span class="pnl-val" style="color:var(--cream4)">${rp(tgt.pettyCash||0)}</span></div>
       <div class="pnl-row"><span class="pnl-lbl">Selisih vs Budget</span><span class="pnl-val" style="color:${tgt.pettyCash&&tE>tgt.pettyCash?'var(--red)':'var(--green)'}">${tgt.pettyCash?rp(Math.abs(tE-tgt.pettyCash))+' '+(tE>tgt.pettyCash?'(over)':'(under)'):'—'}</span></div>
     </div>
@@ -2292,11 +2588,131 @@ function renderTraceback() {
   g('tb-te').textContent=rp(tE); g('tb-tn').textContent=rp(tN); g('tb-tt').textContent=tT;
 }
 
+// ══════════════ CHECKLIST TEMPLATE EDITOR ══════════════
+const CL_TYPE_LABELS = {opening:'Opening',midshift:'Mid Shift',closing:'Closing',weekly:'Weekly',monthly:'Monthly'};
+const CL_DEFAULT_MAP = {opening:()=>CL_TEMPLATES.opening,midshift:()=>CL_TEMPLATES.midshift,closing:()=>CL_TEMPLATES.closing,weekly:()=>WEEKLY_CL,monthly:()=>MONTHLY_CL};
+
+function getClTemplate(type){
+  // Return custom template from DB if set, else fallback to hardcoded default
+  if(DB.clTemplates&&DB.clTemplates[type]&&DB.clTemplates[type].length) return DB.clTemplates[type];
+  return CL_DEFAULT_MAP[type]?.()|| [];
+}
+
+let _cleType=''; // current type being edited
+
+function openClEditor(type){
+  _cleType=type;
+  g('cle-title').textContent=CL_TYPE_LABELS[type]||type;
+  _renderClEditor();
+  openMod('m-cl-editor');
+}
+
+function _renderClEditor(){
+  const tmpl=JSON.parse(JSON.stringify(getClTemplate(_cleType))); // deep clone
+  // Store working copy in a hidden div data attribute
+  g('cle-body').dataset.tmpl=JSON.stringify(tmpl);
+  _renderClEditorBody(tmpl);
+}
+
+function _renderClEditorBody(tmpl){
+  g('cle-body').innerHTML=tmpl.map((sec,si)=>`
+    <div class="cle-section" id="cle-sec-${si}">
+      <div class="cle-sec-head">
+        <span style="font-size:14px;cursor:move;color:var(--text3)">☰</span>
+        <input class="cle-sec-title" value="${sec.sec.replace(/"/g,'&quot;')}" id="cle-st-${si}" placeholder="Nama seksi..." oninput="_cleSyncTitle(${si},this.value)">
+        <button class="btn-xs btn-del" onclick="_cleDelSec(${si})" title="Hapus seksi">🗑</button>
+      </div>
+      <div class="cle-items" id="cle-items-${si}">
+        ${sec.items.map((item,ii)=>`
+          <div class="cle-item-row" id="cle-ir-${si}-${ii}">
+            <span style="color:var(--text3);font-size:11px;cursor:move">⠿</span>
+            <input class="cle-item-inp" value="${item.replace(/"/g,'&quot;')}" id="cle-ii-${si}-${ii}" placeholder="Deskripsi item..." oninput="_cleSyncItem(${si},${ii},this.value)">
+            <button class="btn-xs btn-del" onclick="_cleDelItem(${si},${ii})" title="Hapus item">✕</button>
+          </div>`).join('')}
+        <div class="cle-add-item">
+          <input class="cle-add-inp" id="cle-new-${si}" placeholder="+ Tambah item baru..." onkeydown="if(event.key==='Enter')_cleAddItem(${si})">
+          <button class="cle-add-btn" onclick="_cleAddItem(${si})">+ Tambah</button>
+        </div>
+      </div>
+    </div>`).join('')+`
+  <div class="cle-add-sec">
+    <input id="cle-new-sec" placeholder="Nama seksi baru..." onkeydown="if(event.key==='Enter')_cleAddSec()">
+    <button class="btn btn-ghost btn-sm" onclick="_cleAddSec()">+ Tambah Seksi</button>
+  </div>`;
+}
+
+function _cleTmpl(){return JSON.parse(g('cle-body').dataset.tmpl||'[]');}
+function _cleSetTmpl(t){g('cle-body').dataset.tmpl=JSON.stringify(t);_renderClEditorBody(t);}
+
+function _cleSyncTitle(si,val){
+  const t=_cleTmpl(); if(t[si]) t[si].sec=val;
+  g('cle-body').dataset.tmpl=JSON.stringify(t); // save without re-render
+}
+function _cleSyncItem(si,ii,val){
+  const t=_cleTmpl(); if(t[si]&&t[si].items[ii]!==undefined) t[si].items[ii]=val;
+  g('cle-body').dataset.tmpl=JSON.stringify(t);
+}
+function _cleDelItem(si,ii){
+  const t=_cleTmpl();
+  if(!t[si])return;
+  t[si].items.splice(ii,1);
+  _cleSetTmpl(t);
+}
+function _cleDelSec(si){
+  if(!confirm('Hapus seksi "'+(_cleTmpl()[si]?.sec||'')+'"?'))return;
+  const t=_cleTmpl(); t.splice(si,1); _cleSetTmpl(t);
+}
+function _cleAddItem(si){
+  const inp=g('cle-new-'+si); if(!inp)return;
+  const val=inp.value.trim(); if(!val)return;
+  const t=_cleTmpl();
+  if(!t[si])return;
+  t[si].items.push(val);
+  _cleSetTmpl(t);
+}
+function _cleAddSec(){
+  const inp=g('cle-new-sec'); if(!inp)return;
+  const val=inp.value.trim(); if(!val){inp.focus();return;}
+  const t=_cleTmpl();
+  t.push({sec:val,items:[]});
+  _cleSetTmpl(t);
+}
+function saveClEditor(){
+  const t=_cleTmpl();
+  // Sync current input values before saving (in case user just typed without blur)
+  t.forEach((sec,si)=>{
+    const tEl=g('cle-st-'+si); if(tEl) sec.sec=tEl.value.trim()||sec.sec;
+    sec.items.forEach((item,ii)=>{const iEl=g('cle-ii-'+si+'-'+ii); if(iEl) sec.items[ii]=iEl.value||item;});
+    sec.items=sec.items.filter(x=>x.trim()); // remove empty items
+  });
+  const clean=t.filter(s=>s.sec.trim()); // remove empty sections
+  if(!DB.clTemplates) DB.clTemplates={};
+  DB.clTemplates[_cleType]=clean;
+  pushFB();
+  closeMod('m-cl-editor');
+  showToast('✅ Template checklist disimpan');
+  // Re-render the relevant checklist page
+  if(_cleType==='opening'||_cleType==='midshift'||_cleType==='closing') renderChecklist(_cleType);
+  else if(_cleType==='weekly') renderWeekly();
+  else if(_cleType==='monthly') renderMonthly();
+}
+function clEditorResetDefault(){
+  if(!confirm('Kembalikan ke template default? Semua perubahan pada template ini akan hilang.'))return;
+  if(!DB.clTemplates) DB.clTemplates={};
+  delete DB.clTemplates[_cleType];
+  pushFB();
+  closeMod('m-cl-editor');
+  showToast('↺ Template dikembalikan ke default');
+  if(_cleType==='opening'||_cleType==='midshift'||_cleType==='closing') renderChecklist(_cleType);
+  else if(_cleType==='weekly') renderWeekly();
+  else if(_cleType==='monthly') renderMonthly();
+}
+
 // ══════════════ CHECKLIST ══════════════
 function renderChecklist(type) {
   const date=g(type+'-date')?.value||today();
   const key=type+'_'+date;
-  const tmpl=CL_TEMPLATES[type]||[];
+  const tmpl=getClTemplate(type);
   const saved=DB.checklist[key]||{};
   const total=tmpl.reduce((s,sec)=>s+sec.items.length,0);
   const done=Object.keys(saved).filter(k=>!k.endsWith('_by')&&!k.endsWith('_ts')&&saved[k]).length;
@@ -2340,7 +2756,7 @@ function renderWeekly() {
   g('weekly-lbl').textContent='Minggu ke-'+wk+' — '+fmtDate(date);
   const key='weekly_'+date.slice(0,7)+'_w'+wk;
   const saved=DB.checklist[key]||{};
-  g('weekly-content').innerHTML=WEEKLY_CL.map(sec=>`
+  g('weekly-content').innerHTML=getClTemplate('weekly').map(sec=>`
     <div style="margin-bottom:14px"><div class="section-head">${sec.sec}</div>
     ${sec.items.map((item,i)=>{
       const ik=sec.sec.replace(/[^a-zA-Z0-9]/g,'_')+'_'+i, chk=saved[ik];
@@ -2355,7 +2771,7 @@ function renderMonthly() {
   g('monthly-lbl').textContent=shortMonth(mo);
   const key='monthly_'+mo;
   const saved=DB.checklist[key]||{};
-  g('monthly-content').innerHTML=MONTHLY_CL.map(sec=>`
+  g('monthly-content').innerHTML=getClTemplate('monthly').map(sec=>`
     <div style="margin-bottom:14px"><div class="section-head">${sec.sec}</div>
     ${sec.items.map((item,i)=>{
       const ik=sec.sec.replace(/[^a-zA-Z0-9]/g,'_')+'_'+i, chk=saved[ik];
@@ -2419,7 +2835,10 @@ function showToast(msg,dur=3000){const t=g('toast');t.textContent=msg;t.classLis
 
 // ══════════════ FIREBASE ══════════════
 let fbDb,fbRef,fbPoRef,fbReady=false,fbWriting=false,fbTimer=null;
+let fbLoaded=false,_pendingWrites=0;
+let _loadedResolve; const fbLoadedP=new Promise(r=>_loadedResolve=r);
 function setFbSt(msg,c){const el=g('fb-status');if(!el)return;el.textContent=msg;el.style.color=c==='green'?'var(--green)':c==='red'?'var(--red)':'var(--cream4)';}
+// Legacy push untuk modul non-PO (inventory, sales, checklist, dll)
 function pushFB(){
   if(!fbReady||!fbRef)return;
   clearTimeout(fbTimer);
@@ -2430,6 +2849,16 @@ function pushFB(){
       .catch(e=>{setFbSt('✕ '+e.code,'red');fbWriting=false;});
   },1200);
 }
+// PO module helpers — operasi tulis non-blokir
+const cleanObj=o=>JSON.parse(JSON.stringify(o));
+const cleanVal=v=>v==null?null:JSON.parse(JSON.stringify(v));
+const fbKey=k=>String(k).replace(/[.#$\[\]\/]/g,'_');
+function fbOp(label,fn){
+  _pendingWrites++; setFbSt(fbLoaded?'⟳ Menyimpan...':'⟳ Menunggu koneksi...','amber');
+  return fbLoadedP.then(fn).then(r=>{ _pendingWrites--; if(!_pendingWrites) setFbSt('● Tersimpan','green'); return r; })
+    .catch(e=>{ _pendingWrites--; console.error(label,e); setFbSt('✕ Gagal simpan','red'); showToast('⚠ Gagal menyimpan '+label+' ('+(e.code||e.message)+') — coba lagi'); });
+}
+function fbSet(path,val,label){ return fbOp(label||path,()=>fbRef.child(path).set(cleanVal(val))); }
 function initFB(){
   setFbSt('⟳ Menghubungkan...','amber');
   function ls(src,cb){const s=document.createElement('script');s.src=src;s.onload=cb;s.onerror=()=>{setFbSt('⚠ Gagal load Firebase','red');};document.head.appendChild(s);}
@@ -2440,16 +2869,13 @@ function initFB(){
         const app=firebase.apps?.length?firebase.apps[0]:firebase.initializeApp(FB_CFG);
         fbDb=firebase.database(app); fbRef=fbDb.ref(FB_PATH);
         fbDb.ref('.info/connected').on('value',s=>setFbSt(s.val()?'● Online':'○ Offline',s.val()?'green':'amber'));
-        fbPoRef=fbDb.ref('dcr_management/v1/po');
+        // PO disimpan PER-RECORD: dcr_management/v1/po_records/{poId}
+        fbPoRef=fbDb.ref(FB_PATH+'/po_records');
+        migrateLegacyPO();
         fbPoRef.on('value',snap=>{
-          if(snap.val()){
-            const d=snap.val();
-            if(Array.isArray(d.POS)) POS=d.POS;
-            if(d.poN) poN=d.poN;
-          }
-          fbPoReady=true; // data sudah dimuat dari Firebase
+          POS=toArr(snap.val()).filter(p=>p&&p.id).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
+          if(!fbPoReady){ fbPoReady=true; dailyPOBackup(); }
           updateBadges();
-          // Re-render active PO page whenever data changes
           if(currentRole){
             const active=document.querySelector('.page.active')?.id;
             if(active==='page-po-dashboard') renderDashboard();
@@ -2470,6 +2896,9 @@ function initFB(){
             if(data.settings){DB.settings=data.settings;if(data.settings.pins)PINS={...PINS,...data.settings.pins};}
             if(data.inventory&&typeof data.inventory==='object') DB.inventory=data.inventory;
             if(data.masterItems&&typeof data.masterItems==='object') DB.masterItems=data.masterItems;
+            if(Array.isArray(data.cashLedger)) DB.cashLedger=data.cashLedger;
+            if(Array.isArray(data.bankLedger)) DB.bankLedger=data.bankLedger;
+            if(data.clTemplates&&typeof data.clTemplates==='object') DB.clTemplates=data.clTemplates;
           }
           if(currentRole) repopulateSelects();
           if(typeof invInit==='function') invInit();
@@ -2483,10 +2912,26 @@ function initFB(){
           }
         });
         fbReady=true;
+        // Signal fbLoadedP setelah Firebase main ref siap
+        if(!fbLoaded){ fbLoaded=true; _loadedResolve(); }
       }catch(e){setFbSt('✕ Firebase error','red');console.error(e);}
     });
   });
 }
+
+// Peringatkan bila tab ditutup saat masih ada data yang belum terkirim ke server
+window.addEventListener('beforeunload',e=>{ if(_pendingWrites>0){ e.preventDefault(); e.returnValue='Masih ada data yang belum tersimpan'; return e.returnValue; } });
+
+// ── PO MODULE STATE (must be before initFB) ──
+let POS = [];
+let poN = 1;
+let fbPoReady = false;
+let _activePOId   = null;
+let detailPOId    = null;
+let editRows      = 0;
+let editingPOId   = null;
+let _statusFilter = '';
+let itemRows      = 0;
 
 // ── KEYBOARD PIN ──
 document.addEventListener('keydown',e=>{
@@ -2501,30 +2946,17 @@ document.addEventListener('keydown',e=>{
   const d=today(), m=thisMonth();
   ['absensi-date','opening-date','midshift-date','closing-date','weekly-date','briefing-date','br-date','sales-input-date'].forEach(id=>{const el=g(id);if(el)el.value=d;});
   ['target-month','pnl-month','perf-month','monthly-month'].forEach(id=>{const el=g(id);if(el)el.value=m;});
-  if(g('att-time')) g('att-time').value=new Date().toISOString().slice(0,16);
+  if(g('att-time')) g('att-time').value=new Date().toLocalISO().slice(0,16);
   if(g('t-month')) g('t-month').value=m;
-  if(g('tb-from')){const f=new Date();f.setDate(1);g('tb-from').value=f.toISOString().slice(0,10);}
+  if(g('tb-from')){const f=new Date();f.setDate(1);g('tb-from').value=f.toLocalISO().slice(0,10);}
   if(g('tb-to')) g('tb-to').value=d;
   initFB();
 })();
 
 // ════════════════════════════════════════════════════════
 // PURCHASE ORDER MODULE
-// Firebase path: dcr_management/v1/po
+// Firebase path: dcr_management/v1/po_records (per-record)
 // ════════════════════════════════════════════════════════
-
-// ── PO MODULE STATE ──
-let POS = [];
-let poN = 1;
-let fbPoReady = false; // true after first Firebase POS load
-let _activePOId   = null;
-let detailPOId    = null;
-let editRows      = 0;
-let editingPOId   = null;
-let _statusFilter = '';
-let itemRows      = 0;
-
-let OUTLETS = ['DCR Roastery'];
 
 const STATUS_LABELS = {
   draft:'Draft', pending:'Pending', approved:'Approved', partial_approved:'Part. Approved',
@@ -2564,7 +2996,7 @@ function navPO(el) {
   const pg=g('page-'+page); if(pg) pg.classList.add('active');
   _statusFilter='';
   if(page==='po-dashboard') renderDashboard();
-  if(page==='po-all-po')    renderPOList();
+  if(page==='po-all-po')    { g('po-po-list-title').textContent='Semua PO'; renderPOList(); }
   if(page==='po-submit')    renderSubmitPage();
   if(page==='po-approval')  renderApprovalQueue();
   if(page==='po-charts')    initAndRenderCharts();
@@ -2581,6 +3013,9 @@ function updatePORoleUI() {
   const showApproval = isAdmin||isPurchasing;
   const ms=g('po-menu-submit');   if(ms) ms.style.display=showSubmit?'flex':'none';
   const ma=g('po-menu-approval'); if(ma) ma.style.display=showApproval?'flex':'none';
+  // Tombol Buat PO di dashboard dan list page
+  const dcb=g('po-dash-create-btn'); if(dcb) dcb.style.display=showSubmit?'inline-flex':'none';
+  const lcb=g('po-list-create-btn'); if(lcb) lcb.style.display=showSubmit?'inline-flex':'none';
   populateSelects();
 }
 
@@ -2599,7 +3034,7 @@ function saveNewOutlet() {
   if(OUTLETS.includes(name)){ showToast('⚠ Outlet sudah ada'); return; }
   OUTLETS.push(name);
   DB.outlets = [...OUTLETS];
-  pushFB(); pushPOToFirebase();
+  fbOp('outlet',()=>fbRef.child('outlets').transaction(cur=>{ const a=toArr(cur).length?toArr(cur):['DCR Roastery']; if(!a.includes(name)) a.push(name); return a; }));
   closeMod('m-add-outlet');
   showToast('✓ Outlet "'+name+'" ditambahkan');
   // Re-populate selects and auto-select new outlet
@@ -2628,7 +3063,7 @@ function deleteOutlet(idx) {
   if(!confirm('Hapus outlet "'+name+'"? PO yang sudah dibuat tidak terpengaruh.')) return;
   OUTLETS.splice(idx,1);
   DB.outlets = [...OUTLETS];
-  pushFB(); pushPOToFirebase();
+  fbOp('outlet',()=>fbRef.child('outlets').transaction(cur=>{ const a=toArr(cur); return a.length?a.filter(o=>o!==name):[...OUTLETS]; }));
   showToast('🗑 Outlet "'+name+'" dihapus');
   renderOutletList(); populateSelects(); repopulateSelects();
 }
@@ -2648,7 +3083,8 @@ function savePINSettings() {
   if(pp){ DB.settings.pins.purchasing=pp; PINS.purchasing=pp; }
   // Clear fields
   ['set-pin-admin','set-pin-ops','set-pin-purchasing'].forEach(id=>{const el=g(id);if(el)el.value='';});
-  closeMod('m-settings'); pushFB(); showToast('✓ PIN diperbarui');
+  ['admin','ops','purchasing'].forEach(r=>{ if({admin:pa,ops:po,purchasing:pp}[r]) fbSet('settings/pins/'+r,DB.settings.pins[r],'PIN'); });
+  closeMod('m-settings'); showToast('✓ PIN diperbarui');
 }
 
 // ── GANTI PIN ──
@@ -2687,7 +3123,7 @@ function saveChangePin() {
   DB.settings.pins[currentRole] = newPin;
   PINS[currentRole] = newPin;
 
-  pushFB();
+  fbSet('settings/pins/'+currentRole,newPin,'PIN');
   closeMod('m-change-pin');
   showToast('✓ PIN berhasil diperbarui');
 }
@@ -2696,15 +3132,76 @@ function saveChangePin() {
 // ── PO FIREBASE ──
 // initPOFirebase removed (handled in initFB)
 
-function pushPOToFirebase() {
-  if(!fbPoRef || !fbPoReady) return; // jangan overwrite sebelum data Firebase dimuat
-  fbPoRef.set({ POS, poN, _ts: Date.now() })
-    .then(()=>{ updateBadges(); })
-    .catch(e=>{ console.error('PO sync error', e); showToast('⚠ Gagal simpan PO'); });
+// ══ PO PERSISTENCE (per-record) ══
+function savePO(po) {
+  if(!po) return;
+  po.updatedAt=po.updatedAt||Date.now();
+  updateBadges();
+  const base=po._rev||0, rec=cleanObj({...po,_rev:base+1});
+  fbOp('PO '+po.id,()=>fbPoRef.child(po.id).transaction(cur=>{
+    // Tolak jika PO di server sudah diubah orang lain sejak terakhir dimuat → tidak saling menimpa
+    if(cur&&(cur._rev||0)!==base) return;
+    return rec;
+  }).then(r=>{
+    if(r.committed){ po._rev=base+1; return; }
+    showToast('⚠ PO '+po.id+' baru saja diubah orang lain. Data terbaru dimuat — ulangi aksi Anda.',5000);
+    const fresh=r.snapshot.val();
+    if(fresh){ const i=POS.findIndex(x=>x.id===po.id); if(i>=0) POS[i]=fresh; }
+    renderPOAll(); if(detailPOId===po.id) openDetail(po.id);
+  }));
 }
+// Pindahkan data PO format lama (dcr_management/v1/po → array POS) ke format per-record.
+// Data lama TIDAK dihapus, tetap ada sebagai cadangan.
+function migrateLegacyPO(silent) {
+  if(!fbDb) return;
+  fbDb.ref(FB_PATH+'/po').once('value').then(snap=>{
+    const rawVal = snap.val();
+    if(!rawVal) { if(!silent) console.log('[PO Migration] Tidak ada data lama di path /po'); return; }
+    // Support both formats: {POS:[...]} or {POS: {0:..., 1:...}}
+    const legacyPOS = rawVal.POS || rawVal;
+    const legacy = toArr(legacyPOS).filter(p=>p&&p.id);
+    if(!legacy.length) { if(!silent) console.log('[PO Migration] Data lama tidak memiliki PO valid'); return; }
+    console.log('[PO Migration] Ditemukan '+legacy.length+' PO lama, memindahkan...');
+    fbPoRef.once('value').then(cur=>{
+      const have=cur.val()||{}, upd={};
+      legacy.forEach(p=>{ if(!have[p.id]) upd[p.id]=cleanObj(p); });
+      if(Object.keys(upd).length){
+        fbPoRef.update(upd).then(()=>{
+          console.log('[PO Migration] Berhasil memindahkan '+Object.keys(upd).length+' PO');
+          showToast('✓ '+Object.keys(upd).length+' PO lama berhasil dipindahkan');
+        });
+      } else {
+        if(!silent) showToast('ℹ Semua PO lama sudah ada di sistem baru');
+      }
+    });
+  }).catch(e=>console.warn('[PO Migration] Gagal:',e));
+}
+// Snapshot harian semua PO: dcr_management/v1/po_backup/{YYYY-MM-DD}
+// Dibuat sekali per hari oleh user pertama yang membuka aplikasi. Disimpan 60 hari terakhir.
+function dailyPOBackup() {
+  if(!POS.length) return;
+  const ref=fbDb.ref(FB_PATH+'/po_backup');
+  const key=today();
+  ref.child(key).transaction(cur=>cur?undefined:{ts:Date.now(),count:POS.length,POS:cleanObj(POS)})
+    .then(()=>{ const c=new Date(); c.setDate(c.getDate()-61); return ref.orderByKey().endAt(c.toLocalISO().slice(0,10)).once('value'); })
+    .then(old=>{
+      const keys=Object.keys(old.val()||{});
+      if(keys.length){ const del={}; keys.forEach(k=>del[k]=null); ref.update(del); }
+    }).catch(e=>console.warn('Backup PO gagal',e));
+}
+// Nomor PO berurutan & mudah dilacak: PO-2610-001 (tahun-bulan-urutan)
+async function nextPOId() {
+  const ym=today().slice(2,7).replace('-','');
+  try{
+    const r=await fbDb.ref(FB_PATH+'/po_counter/'+ym).transaction(n=>(n||0)+1);
+    if(r.committed) return 'PO-'+ym+'-'+String(r.snapshot.val()).padStart(3,'0');
+  }catch(e){ console.warn('Counter PO gagal',e); }
+  return 'PO-'+ym+'-'+uid().slice(-5).toUpperCase();
+}
+const isDeleted = p => !!p.deletedAt;
 
 function setDateRange(mode) {
-  const now=new Date(), fmt=d=>d.toISOString().slice(0,10);
+  const now=new Date(), fmt=d=>d.toLocalISO().slice(0,10);
   let from='', to=fmt(now);
   if(mode==='mtd') from=fmt(new Date(now.getFullYear(),now.getMonth(),1));
   else if(mode==='7d') { const d=new Date(now); d.setDate(d.getDate()-6); from=fmt(d); }
@@ -2715,12 +3212,12 @@ function setDateRange(mode) {
 }
 
 function setChartRange(mode) {
-  const now=new Date(), fmt=d=>d.toISOString().slice(0,10);
+  const now=new Date(), fmt=d=>d.toLocalISO().slice(0,10);
   let from='', to=fmt(now);
   if(mode==='mtd') from=fmt(new Date(now.getFullYear(),now.getMonth(),1));
   else if(mode==='3m') { const d=new Date(now); d.setMonth(d.getMonth()-3); from=fmt(d); }
   else {
-    const dates=POS.map(p=>new Date(p.createdAt).toISOString().slice(0,10)).sort();
+    const dates=POS.map(p=>new Date(p.createdAt).toLocalISO().slice(0,10)).sort();
     from=dates[0]||fmt(new Date(now.getFullYear(),now.getMonth(),1));
   }
   const f=g('po-chart-from'),t=g('po-chart-to');
@@ -2729,9 +3226,9 @@ function setChartRange(mode) {
 }
 
 function visiblePOs() {
-  if(!currentRole) return POS;
-  // All roles see all POs — outlet filtering done via search/filter UI
-  return POS;
+  // PO yang diarsipkan disembunyikan, kecuali saat filter "Dihapus" aktif
+  if(_statusFilter==='deleted') return POS.filter(isDeleted);
+  return POS.filter(p=>!isDeleted(p));
 }
 
 function pipelineHTML(po) {
@@ -2872,7 +3369,7 @@ function renderDashboard() {
   g('po-urgent-count').textContent=urgent.length?urgent.length+' PO':'';
   g('po-urgent-list').innerHTML=urgent.length?urgent.map(p=>miniCard(p)).join(''):`<div class="empty-state" style="padding:20px 0"><div class="empty-icon">✅</div><div class="empty-text" style="font-size:12px">Tidak ada PO mendesak</div></div>`;
   const recent=[...vis].sort((a,b)=>b.createdAt-a.createdAt).slice(0,5);
-  g('po-recent-list').innerHTML=recent.length?recent.map(p=>miniCard(p)).join(''):`<div class="empty-state" style="padding:20px 0"><div class="empty-icon">📋</div><div class="empty-text" style="font-size:12px">Belum ada PO</div></div>`;
+  g('po-recent-list').innerHTML=recent.length?recent.map(p=>miniCard(p)).join(''):`<div class="empty-state" style="padding:20px 0"><div class="empty-icon">📋</div><div class="empty-text" style="font-size:12px">${fbPoReady?'Belum ada PO':'Memuat data...'}</div></div>`;
   const cats={};
   vis.forEach(p=>{cats[p.cat]=(cats[p.cat]||0)+1;});
   g('po-dash-breakdown').innerHTML=Object.entries(cats).length?Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([cat,cnt])=>{
@@ -2884,9 +3381,24 @@ function renderDashboard() {
       <span style="font-size:10px;color:var(--text2);font-family:var(--fm);min-width:16px">${cnt}</span>
       <span style="font-size:10px;color:var(--text3);font-family:var(--fm);min-width:70px;text-align:right">${rpK(amt)}</span>
     </div>`;
-  }).join(''):'<div style="color:var(--text3);font-size:12px">Belum ada data</div>';
+  }).join(''):`<div style="color:var(--text3);font-size:12px;line-height:1.6">${fbPoReady?'Belum ada data PO.<br><span style="font-size:10px">Buat PO baru melalui menu <b>Buat PO</b> di sidebar kiri.</span>':'<span style="color:var(--gold)">⟳ Menghubungkan ke Firebase...</span>'}</div>`;
 }
 
+let _lastPOList=[];
+function exportPOCSV() {
+  const list=_lastPOList; if(!list.length){ showToast('⚠ Tidak ada PO untuk diekspor'); return; }
+  const esc=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const head=['PO ID','Tgl Buat','Outlet','Divisi','Kategori','Prioritas','Status','Pembuat','Item','Satuan','Qty PO','Qty Approve','Qty Order','Qty Terima','Harga/Unit','Harga Final','Total PO','Approved oleh','Tgl Approve','Tgl Terima Terakhir','Ditutup oleh','Tgl Close','Catatan'];
+  const rows=[head];
+  list.forEach(p=>(p.items?.length?p.items:[{}]).forEach(it=>rows.push([
+    p.id,fmtTS(p.createdAt),p.outlet,p.divisi||'',p.cat,p.priority,stLabel(p.status)+(isDeleted(p)?' (dihapus)':''),p.submitter||'',
+    it.name||'',it.unit||'',it.qty??'',it.qtyApproved??'',it.qtyOrdered??'',it.qtyReceived??'',it.price??'',it.finalPrice??'',
+    p.totalFinal||p.total||0,p.approvedBy||'',p.approvedAt?fmtTS(p.approvedAt):'',it.receivedDate||'',p.closedBy||'',p.closedAt?fmtTS(p.closedAt):'',p.note||''])));
+  const csv='\ufeff'+rows.map(r=>r.map(esc).join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download='PO_DCR_'+today()+'.csv'; a.click(); URL.revokeObjectURL(a.href);
+}
 function renderPOList() {
   const vis=visiblePOs();
   const sf=_statusFilter||'', q=(g('po-search-po')?.value||'').toLowerCase();
@@ -2895,12 +3407,12 @@ function renderPOList() {
   const sortF=g('po-filter-sort')?.value||'newest';
   const df=g('filter-from')?.value||'', dt=g('filter-to')?.value||'';
   let list=vis.filter(p=>{
-    if(sf&&p.status!==sf) return false;
+    if(sf&&sf!=='deleted'&&p.status!==sf) return false;
     if(catF&&p.cat!==catF) return false;
     if(outF&&p.outlet!==outF) return false;
     if(divisiF&&(p.divisi||'GENERAL')!==divisiF) return false;
-    if(df){ const d=new Date(p.createdAt).toISOString().slice(0,10); if(d<df) return false; }
-    if(dt){ const d=new Date(p.createdAt).toISOString().slice(0,10); if(d>dt) return false; }
+    if(df){ const d=new Date(p.createdAt).toLocalISO().slice(0,10); if(d<df) return false; }
+    if(dt){ const d=new Date(p.createdAt).toLocalISO().slice(0,10); if(d>dt) return false; }
     if(q){ const hay=(p.id+p.cat+p.outlet+(p.divisi||'')+(p.submitter||'')+p.note+(p.items||[]).map(i=>i.name).join(' ')).toLowerCase(); if(!hay.includes(q)) return false; }
     return true;
   });
@@ -2911,123 +3423,36 @@ function renderPOList() {
     if(sortF==='amount-asc') return a.total-b.total;
     return 0;
   });
+  _lastPOList=list;
   g('po-po-list-count').textContent=list.length+' purchase order';
   const el=g('po-po-list');
   el.innerHTML=list.length?list.map(p=>renderPOCard(p)).join(''):`<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">Tidak ada PO ditemukan</div><div class="empty-sub">Coba ubah filter atau buat PO baru</div></div>`;
 }
 
-function poIsRoastery() {
-  const v=(g('s-outlet')?.value||'').toLowerCase();
-  return v.includes('roastery');
-}
-
-function poOutletChanged() {
-  const isRoastery = poIsRoastery();
-  const divisiSel = g('s-divisi');
-  if(isRoastery) {
-    // DCR Roastery: tampilkan semua divisi termasuk ROASTERY & GENERAL
-    divisiSel.innerHTML = `<option value="BAR">BAR</option><option value="KITCHEN">KITCHEN</option><option value="FLOOR">FLOOR</option><option value="ROASTERY">ROASTERY</option><option value="GENERAL">GENERAL</option>`;
-    g('po-divisi-banner').style.display='none';
-  } else {
-    // Outlet lain: hanya BAR, KITCHEN, FLOOR
-    divisiSel.innerHTML = `<option value="BAR">BAR</option><option value="KITCHEN">KITCHEN</option><option value="FLOOR">FLOOR</option>`;
-    g('po-divisi-banner').style.display='flex';
-    g('po-divisi-banner').innerHTML='📋 Outlet ini menggunakan master item. Pilih Divisi untuk melihat daftar item yang tersedia.';
-  }
-  // Rebuild items with new context
-  g('items-container').innerHTML=''; itemRows=0;
-  addItemRow(); addItemRow();
-}
-
-function poDivisiChanged() {
-  const isRoastery = poIsRoastery();
-  const divisi = g('s-divisi')?.value||'GENERAL';
-  if(!isRoastery && ['BAR','KITCHEN','FLOOR'].includes(divisi)) {
-    const count = (masterGetItems(divisi)||[]).length;
-    g('po-divisi-banner').innerHTML=`📦 Divisi <strong>${divisi}</strong> — ${count} item tersedia dalam master data`;
-    g('po-divisi-banner').style.display='flex';
-  }
-  // Rebuild item rows with new divisi context
-  g('items-container').innerHTML=''; itemRows=0;
-  addItemRow(); addItemRow();
-}
-
 function renderSubmitPage() {
   g('items-container').innerHTML=''; itemRows=0;
-  ['s-note'].forEach(id=>{const el=g(id);if(el)el.value='';});
+  addItemRow(); addItemRow();
+  ['s-outlet','s-note'].forEach(id=>{const el=g(id);if(el)el.value='';});
   g('s-cat').value='Bahan Baku'; g('s-priority').value='Medium';
+  const sDivisi=g('s-divisi'); if(sDivisi) sDivisi.value='GENERAL';
   // Auto-select first outlet if nothing selected
   const sOutlet=g('s-outlet');
   if(sOutlet&&!sOutlet.value&&OUTLETS.length) sOutlet.value=OUTLETS[0];
-  poOutletChanged();
   calcTotal();
 }
 
 function addItemRow(item,container,prefix) {
   itemRows++;
   const idx=itemRows, c=container||g('items-container'), pfx=prefix||'item';
-  const isMainForm = !container; // main submit form vs edit form
-  const isRoastery = isMainForm ? poIsRoastery() : true;
-  const divisi = isMainForm ? (g('s-divisi')?.value||'GENERAL') : 'GENERAL';
-  const useMaster = isMainForm && !isRoastery && ['BAR','KITCHEN','FLOOR'].includes(divisi);
-  const masterItems = useMaster ? (masterGetItems(divisi)||[]) : [];
-
   const row=document.createElement('div');
   row.className='item-form-row-ops'; row.id=pfx+'-row-'+idx;
   row.style.cssText='display:grid;grid-template-columns:2.4fr 90px 100px 28px;gap:5px;align-items:end;margin-bottom:5px';
-
-  if(useMaster) {
-    // Searchbar + dropdown dari master data
-    const defName = item?.name||'';
-    const defUnit = item?.unit||'';
-    row.innerHTML=`
-      <div class="fg po-item-search-wrap">
-        <div style="position:relative">
-          <input type="text" id="${pfx}-name-${idx}" placeholder="Ketik untuk cari item..." value="${defName}" autocomplete="off"
-            oninput="poSearchItem(this,'${pfx}','${idx}','${divisi}')"
-            onfocus="poSearchItem(this,'${pfx}','${idx}','${divisi}')"
-            onblur="setTimeout(()=>poCloseDropdown('${pfx}-dd-${idx}'),200)">
-          <div class="po-item-dropdown" id="${pfx}-dd-${idx}" style="display:none"></div>
-        </div>
-      </div>
-      <div class="fg"><input type="number" id="${pfx}-qty-${idx}" placeholder="0" min="0" value="${item?.qty||''}"></div>
-      <div class="fg"><input type="text" id="${pfx}-unit-${idx}" placeholder="pcs/gr/kg" value="${defUnit}" readonly style="color:var(--text2)"></div>
-      <button class="btn-del-item" onclick="document.getElementById('${pfx}-row-${idx}')?.remove()">✕</button>`;
-  } else {
-    // Form bebas (Roastery / edit form)
-    row.innerHTML=`
-      <div class="fg"><input type="text" id="${pfx}-name-${idx}" placeholder="Nama item..." value="${item?.name||''}"></div>
-      <div class="fg"><input type="number" id="${pfx}-qty-${idx}" placeholder="0" min="0" value="${item?.qty||''}"></div>
-      <div class="fg"><input type="text" id="${pfx}-unit-${idx}" placeholder="kg/pcs" value="${item?.unit||''}"></div>
-      <button class="btn-del-item" onclick="document.getElementById('${pfx}-row-${idx}')?.remove()">✕</button>`;
-  }
+  row.innerHTML=`
+    <div class="fg"><input type="text" id="${pfx}-name-${idx}" placeholder="Nama item..." value="${item?.name||''}"></div>
+    <div class="fg"><input type="number" id="${pfx}-qty-${idx}" placeholder="0" min="0" value="${item?.qty||''}"></div>
+    <div class="fg"><input type="text" id="${pfx}-unit-${idx}" placeholder="kg/pcs" value="${item?.unit||''}"></div>
+    <button class="btn-del-item" onclick="document.getElementById('${pfx}-row-${idx}')?.remove()">✕</button>`;
   c.appendChild(row);
-}
-
-function poSearchItem(inputEl, pfx, idx, divisi) {
-  const q = inputEl.value.toLowerCase().trim();
-  const dd = g(`${pfx}-dd-${idx}`);
-  if(!dd) return;
-  const items = masterGetItems(divisi)||[];
-  const filtered = q ? items.filter(it=>it.name.toLowerCase().includes(q)||it.category.toLowerCase().includes(q)) : items;
-  if(!filtered.length) { dd.style.display='none'; return; }
-  dd.innerHTML = filtered.slice(0,50).map(it=>
-    `<div class="po-item-opt" onmousedown="poSelectItem('${pfx}','${idx}',${JSON.stringify(it.name).replace(/"/g,'&quot;')},${JSON.stringify(it.uom).replace(/"/g,'&quot;')})">
-      <span class="po-item-opt-name">${it.name}</span>
-      <span class="po-item-opt-cat">${it.category}</span>
-    </div>`
-  ).join('');
-  dd.style.display='block';
-}
-
-function poSelectItem(pfx, idx, name, uom) {
-  const inp = g(`${pfx}-name-${idx}`); if(inp) inp.value=name;
-  const unitInp = g(`${pfx}-unit-${idx}`); if(unitInp) unitInp.value=uom||'';
-  poCloseDropdown(`${pfx}-dd-${idx}`);
-}
-
-function poCloseDropdown(ddId) {
-  const dd=g(ddId); if(dd) dd.style.display='none';
 }
 
 function getItems() {
@@ -3049,14 +3474,14 @@ function calcTotal() {
   if(el){ el.textContent='Estimasi oleh Purchasing'; el.style.fontSize='11px'; el.style.color='var(--text3)'; }
 }
 
-function buildPO(status) {
+async function buildPO(status) {
   const outlet=g('s-outlet')?.value;
   if(!outlet){ showToast('⚠ Pilih outlet'); return null; }
   const items=getItems();
   if(!items.length){ showToast('⚠ Tambah minimal 1 item'); return null; }
   const total=0, now=Date.now(); // Price filled by Purchasing during approval
   return {
-    id:uid(), outlet, cat:g('s-cat')?.value||'Bahan Baku',
+    id:await nextPOId(), outlet, cat:g('s-cat')?.value||'Bahan Baku',
     priority:g('s-priority')?.value||'Medium', divisi:g('s-divisi')?.value||'GENERAL',
     note:g('s-note')?.value?.trim()||'',
     items, total, status,
@@ -3065,23 +3490,27 @@ function buildPO(status) {
   };
 }
 
-function saveDraft() {
-  const po=buildPO('draft'); if(!po) return;
-  POS.push(po); pushPOToFirebase();
+let _poSaving=false;
+async function saveDraft() {
+  if(_poSaving) return; _poSaving=true;
+  const po=await buildPO('draft'); _poSaving=false; if(!po) return;
+  POS.push(po); savePO(po);
   showToast('✓ Draft '+po.id+' tersimpan');
   renderSubmitPage(); renderPOAll();
 }
 
-function submitPO() {
-  const po=buildPO('pending'); if(!po) return;
-  POS.push(po); pushPOToFirebase();
+async function submitPO() {
+  if(_poSaving) return; _poSaving=true;
+  const po=await buildPO('pending'); _poSaving=false; if(!po) return;
+  POS.push(po); savePO(po);
   showToast('✓ '+po.id+' submitted ke Purchasing');
   renderSubmitPage(); renderPOAll();
 }
 
 function renderApprovalQueue() {
-  const queue=POS.filter(p=>p.status==='pending');
-  const partial=POS.filter(p=>['partial_approved','partial_ordered','partial_received'].includes(p.status));
+  const live=POS.filter(p=>!isDeleted(p));
+  const queue=live.filter(p=>p.status==='pending');
+  const partial=live.filter(p=>['partial_approved','partial_ordered','partial_received'].includes(p.status));
   const _aqEl=g('po-approval-sub'); if(_aqEl) _aqEl.textContent=queue.length+' pending · '+partial.length+' partial';
   const el=g('po-approval-list'); if(!el) return;
   if(!queue.length&&!partial.length){
@@ -3110,6 +3539,7 @@ function openDetail(poId) {
   let html='';
 
   // Pipeline
+  if(isDeleted(po)) html+=`<div style="background:var(--red-dim);border:1px solid var(--red);border-radius:var(--r);padding:9px 11px;font-size:11px;color:var(--red);margin-bottom:12px">🗑 PO ini diarsipkan oleh ${po.deletedBy||'—'} · ${fmtTS(po.deletedAt)}</div>`;
   html+=`<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)">${pipelineHTML(po)}</div>`;
 
   // Info
@@ -3178,6 +3608,10 @@ function buildDetailFooter(po) {
   const isOps=currentRole==='ops';
   const isPurchasing=currentRole==='purchasing';
   const s=po.status;
+  if(isDeleted(po)){
+    if(isAdmin) btns.push(`<button class="btn btn-green" onclick="restorePO('${po.id}')">↺ Pulihkan PO</button>`);
+    return `<button class="btn btn-ghost btn-sm" onclick="closeDetail()">← Kembali</button><div class="spacer"></div>${btns.join('')}`;
+  }
   // Draft: ops & admin can edit & submit
   if(s==='draft'&&(isOps||isAdmin)){
     btns.push(`<button class="btn btn-ghost btn-sm" onclick="openEditDraft('${po.id}')">✏ Edit</button>`);
@@ -3197,7 +3631,7 @@ function buildDetailFooter(po) {
     btns.push(`<button class="btn btn-green" onclick="openPartialReceive('${po.id}')">📬 Terima Barang</button>`);
   }
   // Received: ops & admin can close
-  if((s==='received'||s==='partial_received')&&(isOps||isAdmin)){
+  if((s==='received'||s==='partial_received')&&(isPurchasing||isAdmin)){
     btns.push(`<button class="btn btn-ghost btn-sm" onclick="openClosePO('${po.id}')">🔒 Close PO</button>`);
   }
   // Draft/rejected: ops & admin can delete
@@ -3270,7 +3704,7 @@ function saveEditDraft() {
   po.note=g('e-note').value.trim(); po.items=items;
   po.total=items.reduce((s,i)=>s+(i.price?i.qty*i.price:0),0); po.updatedAt=Date.now();
   po.timeline.push({ts:Date.now(),by:currentUser,role:currentRole,action:'Draft diedit',status:'draft',color:''});
-  closeMod('m-edit'); pushPOToFirebase(); showToast('✓ Draft diperbarui');
+  closeMod('m-edit'); savePO(po); showToast('✓ Draft diperbarui');
   if(detailPOId===editingPOId) openDetail(editingPOId);
   renderPOAll();
 }
@@ -3279,15 +3713,23 @@ function quickSubmit(poId) {
   const po=POS.find(p=>p.id===poId); if(!po) return;
   po.status='pending'; po.updatedAt=Date.now();
   po.timeline.push({ts:Date.now(),by:currentUser,role:currentRole,action:'Submitted untuk Approval',status:'pending',color:'amber'});
-  pushPOToFirebase(); showToast('✓ '+poId+' submitted'); updateBadges();
+  savePO(po); showToast('✓ '+poId+' submitted'); updateBadges();
   if(detailPOId===poId) openDetail(poId);
   renderPOAll();
 }
 
 function deletePO(poId) {
-  if(!confirm('Hapus PO '+poId+'?')) return;
-  POS=POS.filter(p=>p.id!==poId); closeDetail(); pushPOToFirebase();
-  showToast('🗑 '+poId+' dihapus'); renderPOAll();
+  const po=POS.find(p=>p.id===poId); if(!po) return;
+  if(!confirm('Hapus PO '+poId+'?\nPO tidak benar-benar dihapus — masih bisa dilihat & dipulihkan Admin di filter "Dihapus".')) return;
+  po.deletedAt=Date.now(); po.deletedBy=currentUser; po.updatedAt=Date.now();
+  po.timeline.push({ts:Date.now(),by:currentUser,role:currentRole,action:'PO dihapus (diarsipkan)',status:po.status,color:'red'});
+  savePO(po); closeDetail(); showToast('🗑 '+poId+' diarsipkan'); renderPOAll();
+}
+function restorePO(poId) {
+  const po=POS.find(p=>p.id===poId); if(!po) return;
+  delete po.deletedAt; delete po.deletedBy; po.updatedAt=Date.now();
+  po.timeline.push({ts:Date.now(),by:currentUser,role:currentRole,action:'PO dipulihkan',status:po.status,color:'green'});
+  savePO(po); showToast('↺ '+poId+' dipulihkan'); openDetail(poId); renderPOAll();
 }
 
 function openPartialApprove(poId) {
@@ -3346,7 +3788,7 @@ function savePartialApprove() {
   po.timeline.push({ts:Date.now(),by:currentUser,role:currentRole,
     action:(allApproved?'Semua item diapprove':'Partial approve — '+po.items.filter((_,i)=>g('pa-chk-'+i)?.checked).length+'/'+po.items.length+' item'),
     status:po.status,color:'blue',note});
-  closeMod('m-partial-approve'); pushPOToFirebase();
+  closeMod('m-partial-approve'); savePO(po);
   showToast('✓ Approved — '+po.id); renderPOAll();
   if(detailPOId===_activePOId) openDetail(_activePOId);
 }
@@ -3365,7 +3807,7 @@ function confirmReject() {
   po.status='rejected'; po.updatedAt=Date.now();
   po.rejectedBy=currentUser; po.rejectedAt=Date.now();
   po.timeline.push({ts:Date.now(),by:currentUser,role:currentRole,action:'Ditolak — '+note,status:'rejected',color:'red',note});
-  closeMod('m-reject'); pushPOToFirebase(); showToast('PO '+_activePOId+' ditolak'); renderPOAll();
+  closeMod('m-reject'); savePO(po); showToast('PO '+_activePOId+' ditolak'); renderPOAll();
   if(detailPOId===_activePOId) openDetail(_activePOId);
 }
 
@@ -3413,7 +3855,7 @@ function savePartialOrder() {
   po.timeline.push({ts:Date.now(),by:currentUser,role:currentRole,
     action:'Order ditempatkan ke supplier'+(ref?' — Ref: '+ref:''),
     status:po.status,color:'purple',note:ref});
-  closeMod('m-partial-order'); pushPOToFirebase();
+  closeMod('m-partial-order'); savePO(po);
   showToast('✓ Ordered — '+po.id); renderPOAll();
   if(detailPOId===_activePOId) openDetail(_activePOId);
 }
@@ -3503,7 +3945,7 @@ function savePartialReceive() {
     note: batchDetail.join(' | ')
   });
 
-  closeMod('m-partial-receive'); pushPOToFirebase();
+  closeMod('m-partial-receive'); savePO(po);
   showToast(allComplete?'✓ Semua barang diterima — '+po.id:'✓ Susulan diterima — '+po.id);
   renderPOAll();
   if(detailPOId===_activePOId) openDetail(_activePOId);
@@ -3554,7 +3996,7 @@ function confirmClose() {
   po.timeline.push({ts:Date.now(),by:currentUser,role:currentRole,
     action:'PO ditutup · Total: '+rp(totalFinal),status:'closed',color:'',
     note:(note?note+' | ':'')+itemSummary});
-  closeMod('m-close'); pushPOToFirebase();
+  closeMod('m-close'); savePO(po);
   showToast('🔒 PO '+_activePOId+' ditutup · Total: '+rp(totalFinal));
   renderPOAll();
   if(detailPOId===_activePOId) openDetail(_activePOId);
@@ -3569,28 +4011,32 @@ function renderPOAll() {
 }
 
 function updateBadges() {
-  const vis=visiblePOs();
+  const vis=POS.filter(p=>!isDeleted(p));
   const set=(id,val)=>{ const el=g(id); if(el) el.textContent=val; };
-  set('po-badge-all',      POS.length);
+  set('po-badge-all',      vis.length);
+  set('po-badge-deleted',  POS.filter(isDeleted).length);
   set('po-badge-draft',    vis.filter(p=>p.status==='draft').length);
-  set('po-badge-pending',  POS.filter(p=>p.status==='pending').length);
+  set('po-badge-pending',  vis.filter(p=>p.status==='pending').length);
   set('po-badge-approved', vis.filter(p=>['approved','partial_approved'].includes(p.status)).length);
   set('po-badge-ordered',  vis.filter(p=>['ordered','partial_ordered'].includes(p.status)).length);
   set('po-badge-received', vis.filter(p=>['received','partial_received'].includes(p.status)).length);
   set('po-badge-closed',   vis.filter(p=>p.status==='closed').length);
-  set('po-badge-approval', POS.filter(p=>p.status==='pending').length);
+  set('po-badge-approval', vis.filter(p=>p.status==='pending').length);
 }
 
 function initAndRenderCharts() {
   const cf=g('po-chart-from'),ct=g('po-chart-to');
-  if(cf&&!cf.value){ const now=new Date(); cf.value=new Date(now.getFullYear(),now.getMonth(),1).toISOString().slice(0,10); }
-  if(ct&&!ct.value){ ct.value=new Date().toISOString().slice(0,10); }
+  if(cf&&!cf.value){ const now=new Date(); cf.value=new Date(now.getFullYear(),now.getMonth(),1).toLocalISO().slice(0,10); }
+  if(ct&&!ct.value){ ct.value=new Date().toLocalISO().slice(0,10); }
   renderCharts();
 }
 
+const STS_CLR={draft:'#8A7D6A',pending:'#D4A843',approved:'#3A6EA8',partial_approved:'#79C0FF',ordered:'#8A6DC8',partial_ordered:'#D2A8FF',received:'#4A8C5C',partial_received:'#56D364',closed:'#5A5048',rejected:'#C0453A'};
+const CAT_CLR={'Bahan Baku':'#7EE8A2','Equipment':'#79C0FF','Packaging':'#FFA657','Operasional':'#D2A8FF','Lainnya':'#8B949E'};
+const OUT_CLR={};
 function renderCharts() {
   const from=g('po-chart-from')?.value||'', to=g('po-chart-to')?.value||'';
-  const filtered=POS.filter(p=>{ const d=new Date(p.createdAt).toISOString().slice(0,10); return (!from||d>=from)&&(!to||d<=to); });
+  const filtered=POS.filter(p=>!isDeleted(p)).filter(p=>{ const d=new Date(p.createdAt).toLocalISO().slice(0,10); return (!from||d>=from)&&(!to||d<=to); });
   const lbl=g('po-chart-period-label');
   if(lbl) lbl.textContent=(from||to?(from?fmtDate(from):'Awal')+' — '+(to?fmtDate(to):'Sekarang'):'Semua')+' · '+filtered.length+' PO';
   const totalSpend=filtered.reduce((s,p)=>s+p.total,0);
@@ -3607,7 +4053,7 @@ function renderCharts() {
   filtered.forEach(p=>{
     const d=new Date(p.createdAt), day=d.getDay(), mon=new Date(d);
     mon.setDate(d.getDate()-(day===0?6:day-1));
-    const wk=mon.toISOString().slice(0,10);
+    const wk=mon.toLocalISO().slice(0,10);
     if(!wkMap[wk]) wkMap[wk]={count:0,total:0};
     wkMap[wk].count++; wkMap[wk].total+=p.total;
   });
@@ -3645,12 +4091,12 @@ function renderCharts() {
   const priE=Object.entries(priC).filter(([,v])=>v>0);
   destroyChart('chart-priority');
   const ctx5=g('po-chart-priority');
-  if(ctx5) PO_charts['chart-priority']=new Chart(ctx5,{type:'doughnut',data:{labels:priE.map(([k])=>k),datasets:[{data:priE.map(([,v])=>v),backgroundColor:{Urgent:'#F78166',High:'#E3B341',Medium:'#58A6FF',Low:'#3FB950'},borderWidth:0,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8B949E',font:{size:8},boxWidth:7,padding:6}}}}});
+  if(ctx5) PO_charts['chart-priority']=new Chart(ctx5,{type:'doughnut',data:{labels:priE.map(([k])=>k),datasets:[{data:priE.map(([,v])=>v),backgroundColor:priE.map(([k])=>({Urgent:'#F78166',High:'#E3B341',Medium:'#58A6FF',Low:'#3FB950'})[k]),borderWidth:0,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8B949E',font:{size:8},boxWidth:7,padding:6}}}}});
 
   // Chart 6: Turnaround
   const mTA={};
   filtered.filter(p=>p.approvedAt&&p.createdAt).forEach(p=>{
-    const m=new Date(p.createdAt).toISOString().slice(0,7);
+    const m=new Date(p.createdAt).toLocalISO().slice(0,7);
     if(!mTA[m]) mTA[m]=[];
     mTA[m].push((p.approvedAt-p.createdAt)/86400000);
   });
@@ -3665,7 +4111,7 @@ function renderCharts() {
   const sorted=[...filtered].sort((a,b)=>a.createdAt-b.createdAt);
   let cum=0;
   const cumD=sorted.map(p=>{cum+=p.total;return cum;});
-  const cumL=sorted.map(p=>new Date(p.createdAt).toISOString().slice(5,10));
+  const cumL=sorted.map(p=>new Date(p.createdAt).toLocalISO().slice(5,10));
   destroyChart('chart-cumulative');
   const ctx7=g('po-chart-cumulative');
   if(ctx7&&cumD.length) PO_charts['chart-cumulative']=new Chart(ctx7,{type:'line',data:{labels:cumL,datasets:[{data:cumD,borderColor:'#E3B341',backgroundColor:'rgba(227,179,65,.07)',fill:true,tension:.3,pointRadius:2,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(255,255,255,.02)'},ticks:{color:'#8B949E',font:{size:8},maxTicksLimit:10}},y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{color:'#8B949E',font:{size:8},callback:v=>v>=1e6?'Rp'+(v/1e6).toFixed(1)+'jt':v>=1e3?'Rp'+(v/1e3).toFixed(0)+'rb':'Rp'+v}}}}});
@@ -3691,7 +4137,7 @@ function filterByStatus(status,e) {
   e?.target?.closest('.sb-item')?.classList.add('active');
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   g('page-po-all-po').classList.add('active');
-  g('po-po-list-title').textContent=stLabel(status);
+  g('po-po-list-title').textContent=status==='deleted'?'PO Dihapus (Arsip)':stLabel(status);
   _statusFilter=status;
   renderPOList();
 }
@@ -3734,6 +4180,7 @@ function initPOModule() {
   updatePORoleUI();
   updateBadges();
 }
+
 
 
 // ════════════════════════════════════════════════════════
@@ -4311,10 +4758,21 @@ function renderInvDashboard(){
   const totalItems=sorted.length;
   const totalNilai=sorted.reduce((s,r)=>s+r.nilai,0);
   const totalP=sorted.reduce((s,r)=>s+r.penggunaan,0);
+  // Calculate total spoil value for the period
+  let totalSpoilValue=0;
+  divs.forEach(div=>{
+    const root=(DB.inventory?.[outlet]?.[div])||{};
+    Object.entries(root).forEach(([dk,dayData])=>{
+      const dStr=dk.slice(0,4)+'-'+dk.slice(4,6)+'-'+dk.slice(6,8);
+      if(dStr<from||dStr>to)return;
+      Object.values(dayData).forEach(rec=>{totalSpoilValue+=(rec.spoil||0)*(rec.harga||0);});
+    });
+  });
   g('inv-dash-stats').innerHTML=`
     <div class="inv-stat-tile"><div class="inv-stat-label">Total Item</div><div class="inv-stat-val">${totalItems}</div><div class="inv-stat-sub">${divFilter==='ALL'?'Semua divisi':divFilter}</div></div>
     <div class="inv-stat-tile"><div class="inv-stat-label">Total Penggunaan</div><div class="inv-stat-val">${totalP.toLocaleString('id')}</div><div class="inv-stat-sub">unit terkonsumsi</div></div>
     <div class="inv-stat-tile"><div class="inv-stat-label">Nilai Penggunaan</div><div class="inv-stat-val">${fmtRp(totalNilai)}</div><div class="inv-stat-sub">estimasi cost</div></div>
+    <div class="inv-stat-tile" style="border-top:3px solid var(--red)"><div class="inv-stat-label">🗑️ Nilai Spoil</div><div class="inv-stat-val" style="color:var(--red)">${fmtRp(totalSpoilValue)}</div><div class="inv-stat-sub">kerugian spoil</div></div>
     <div class="inv-stat-tile"><div class="inv-stat-label">Periode</div><div class="inv-stat-val" style="font-size:13px">${from}</div><div class="inv-stat-sub">s/d ${to}</div></div>`;
   const top10=sorted.slice(0,10);
   const bot10=[...sorted].sort((a,b)=>a.penggunaan-b.penggunaan).filter(r=>r.penggunaan>=0).slice(0,10);
@@ -4332,6 +4790,21 @@ function renderInvDashboard(){
 
 function invInputOutletChanged(){renderInvInputTable()}
 
+function invGetPrevSisaAkhir(outlet, divisi, dateStr, itemName){
+  // Cari sisaStokAkhir hari sebelumnya (hari terdekat sebelum dateStr yang punya data)
+  const root = DB.inventory?.[outlet]?.[divisi] || {};
+  const targetDk = invDateKey(dateStr);
+  // Ambil semua dateKey yang lebih kecil dari hari ini, sort descending
+  const prevKeys = Object.keys(root)
+    .filter(dk => dk < targetDk)
+    .sort((a,b) => b.localeCompare(a));
+  for(const dk of prevKeys){
+    const rec = root[dk]?.[itemName];
+    if(rec && rec.sisaStokAkhir !== undefined) return rec.sisaStokAkhir;
+  }
+  return 0; // tidak ada data sebelumnya
+}
+
 function renderInvInputTable(){
   const outlet=g('inv-input-outlet')?.value||OUTLETS[0]||'';
   const divisi=g('inv-input-div')?.value||'BAR';
@@ -4343,7 +4816,9 @@ function renderInvInputTable(){
   g('inv-input-sub').textContent=`${outlet} · ${divisi} · ${dateStr}`;
   if(!masterItems.length){g('inv-input-table').innerHTML='<div style="color:var(--text3);font-size:12px;padding:20px 0">Tidak ada item master untuk divisi ini.</div>';return;}
   const rows=masterItems.map(it=>{
-    const rec=dayData[it.name]||{stokAwal:0,stockIn:0,spoil:0,transfer:0,sisaStokAkhir:0,harga:it.cost||0};
+    // Jika hari ini belum ada data, carry-over sisaStokAkhir hari sebelumnya sebagai stokAwal
+    const prevSisa = dayData[it.name] ? null : invGetPrevSisaAkhir(outlet, divisi, dateStr, it.name);
+    const rec=dayData[it.name]||{stokAwal: prevSisa||0, stockIn:0,spoil:0,transfer:0,sisaStokAkhir:prevSisa||0,harga:it.cost||0};
     const peng=invCalcPenggunaan(rec);
     const iid=it.name.replace(/[^a-zA-Z0-9]/g,'_');
     return`<tr id="inv-row-${iid}">
@@ -4876,6 +5351,13 @@ const PO_MASTER_ITEMS = {
   ],
 };
 
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  });
+}
 </script>
 </body>
 </html>
