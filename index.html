@@ -607,7 +607,7 @@ textarea{resize:vertical;line-height:1.5}
     <div class="pin-role-tabs">
       <div class="pin-tab active" onclick="selectRole('admin',this)">Admin</div>
       <div class="pin-tab" onclick="selectRole('ops',this)">Operasional</div>
-      <div class="pin-tab" onclick="selectRole('purchasing',this)">Purchasing</div>
+      <div class="pin-tab" onclick="selectRole('purchasing',this)">Purchasing & Finance</div>
     </div>
     <div class="fg-pin"><label>Nama</label><input type="text" id="pin-name" placeholder="Nama kamu..."></div>
     <div class="pin-dots" id="pin-dots">
@@ -639,18 +639,18 @@ textarea{resize:vertical;line-height:1.5}
   <div class="sb-platform sb-section-hris">📁 HRIS</div>
   <div class="sb-item sb-item-hris" data-page="sop-umum" onclick="nav(this)"><span class="sb-icon">📜</span>SOP Umum</div>
   <div class="sb-item sb-item-hris" data-page="sop-divisi" onclick="nav(this)"><span class="sb-icon">🍜</span>SOP Divisi</div>
-  <div class="sb-item sb-item-hris" data-page="karyawan" onclick="nav(this)"><span class="sb-icon">👥</span>Data Karyawan</div>
-  <div class="sb-item sb-item-hris" data-page="dokumen" onclick="nav(this)"><span class="sb-icon">📂</span>Dokumen</div>
-  <div class="sb-item sb-item-hris" data-page="absensi" onclick="nav(this)"><span class="sb-icon">📸</span>Absensi</div>
+  <div class="sb-item sb-item-hris sb-item-hris-admin" data-page="karyawan" onclick="nav(this)"><span class="sb-icon">👥</span>Data Karyawan</div>
+  <div class="sb-item sb-item-hris sb-item-hris-admin" data-page="dokumen" onclick="nav(this)"><span class="sb-icon">📂</span>Dokumen</div>
+  <div class="sb-item sb-item-hris sb-item-hris-admin" data-page="absensi" onclick="nav(this)"><span class="sb-icon">📸</span>Absensi</div>
   <div class="sb-rule sb-section-hris"></div>
 
   <div class="sb-platform sb-section-sales">💰 Sales Report</div>
   <div class="sb-item sb-item-sales" data-page="target" onclick="nav(this)"><span class="sb-icon">🎯</span>Target Bulanan</div>
   <div class="sb-item sb-item-sales" data-page="input-harian" onclick="nav(this)"><span class="sb-icon">📝</span>Input Harian</div>
   <div class="sb-item sb-item-sales" data-page="pnl" onclick="nav(this)"><span class="sb-icon">📊</span>PnL Report</div>
-  <div class="sb-item sb-item-sales" data-page="cash-ledger" onclick="nav(this)"><span class="sb-icon">💵</span>Cash Ledger</div>
-  <div class="sb-item sb-item-sales" data-page="bank-ledger" onclick="nav(this)"><span class="sb-icon">🏦</span>Bank Ledger</div>
-  <div class="sb-item sb-item-sales" data-page="finance-summary" onclick="nav(this)"><span class="sb-icon">📋</span>Ringkasan Keuangan</div>
+  <div class="sb-item sb-item-sales sb-item-finance" data-page="cash-ledger" onclick="nav(this)"><span class="sb-icon">💵</span>Cash Ledger</div>
+  <div class="sb-item sb-item-sales sb-item-finance" data-page="bank-ledger" onclick="nav(this)"><span class="sb-icon">🏦</span>Bank Ledger</div>
+  <div class="sb-item sb-item-sales sb-item-finance" data-page="finance-summary" onclick="nav(this)"><span class="sb-icon">📋</span>Ringkasan Keuangan</div>
   <div class="sb-item sb-item-sales" data-page="performance" onclick="nav(this)"><span class="sb-icon">📈</span>Performance MTD</div>
   <div class="sb-item sb-item-sales" data-page="traceback" onclick="nav(this)"><span class="sb-icon">🔍</span>Traceback</div>
   <div class="sb-rule sb-section-sales"></div>
@@ -1882,7 +1882,7 @@ function updateRoleUI() {
   const dotColor = isAdmin?'var(--gold)':isPurchasing?'var(--blue)':'var(--green)';
   g('role-dot').style.background=dotColor;
   g('role-name').textContent=currentUser;
-  const roleLabel = isAdmin?'ADMIN':isPurchasing?'PURCHASING':'OPERASIONAL';
+  const roleLabel = isAdmin?'ADMIN':isPurchasing?'PURCHASING & FINANCE':'OPERASIONAL';
   g('role-label').textContent=roleLabel;
   // Admin-only elements (SOP edit, tambah karyawan, upload dok, set target, reset checklist)
   document.querySelectorAll('.admin-only').forEach(el=>el.style.display=isAdmin?'inline-flex':'none');
@@ -1918,6 +1918,15 @@ function updateRoleUI() {
   document.querySelectorAll('.sb-rule.sb-section-master').forEach(el=>{
     el.style.display=isAdmin?'block':'none';
   });
+  // Finance (Cash Ledger, Bank Ledger, Ringkasan Keuangan): Admin & Purchasing
+  const showFinance = isAdmin || isPurchasing;
+  document.querySelectorAll('.sb-item-finance').forEach(el=>{
+    el.style.display=showFinance?'flex':'none';
+  });
+  // HRIS restricted (Data Karyawan, Dokumen, Absensi): hanya Admin
+  document.querySelectorAll('.sb-item-hris-admin').forEach(el=>{
+    el.style.display=isAdmin?'flex':'none';
+  });
   if(typeof updatePORoleUI==='function') updatePORoleUI();
 }
 function repopulateSelects() {
@@ -1935,8 +1944,12 @@ function repopulateSelects() {
 function nav(el) {
   if(!currentRole) return;
   const page=el?.dataset.page;
-  // KPI & Master Data pages: hanya Admin yang boleh akses
+  // KPI & Master Data: hanya Admin
   if((page==='kpi-dashboard'||page==='kpi-form'||page==='master-items')&&currentRole!=='admin') return;
+  // Finance (Cash/Bank Ledger, Ringkasan): Admin & Purchasing
+  if((page==='cash-ledger'||page==='bank-ledger'||page==='finance-summary')&&currentRole!=='admin'&&currentRole!=='purchasing') return;
+  // HRIS restricted (Data Karyawan, Dokumen, Absensi): hanya Admin
+  if((page==='karyawan'||page==='dokumen'||page==='absensi')&&currentRole!=='admin') return;
   document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
   el?.classList.add('active');
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -2871,7 +2884,8 @@ function initFB(){
         fbDb.ref('.info/connected').on('value',s=>setFbSt(s.val()?'● Online':'○ Offline',s.val()?'green':'amber'));
         // PO disimpan PER-RECORD: dcr_management/v1/po_records/{poId}
         fbPoRef=fbDb.ref(FB_PATH+'/po_records');
-        migrateLegacyPO();
+        // Migrate data lama (silent=false → tampil toast jika ada yang berhasil dipindahkan)
+        migrateLegacyPO(false);
         fbPoRef.on('value',snap=>{
           POS=toArr(snap.val()).filter(p=>p&&p.id).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
           if(!fbPoReady){ fbPoReady=true; dailyPOBackup(); }
@@ -2888,7 +2902,7 @@ function initFB(){
           if(fbWriting)return;
           const data=snap.val();
           if(data){
-            ['karyawan','dokumen','absensi','sop_umum','sop_divisi','sales','briefing','outlets'].forEach(k=>{if(Array.isArray(data[k]))DB[k]=data[k];});
+            ['karyawan','dokumen','absensi','sop_umum','sop_divisi','sales','briefing','outlets'].forEach(k=>{if(data[k]!=null)DB[k]=toArr(data[k]);});
             if(data.kpi&&typeof data.kpi==='object') DB.kpi=data.kpi;
             if(Array.isArray(DB.outlets)&&DB.outlets.length) OUTLETS=[...DB.outlets];
             if(data.targets&&typeof data.targets==='object') DB.targets=data.targets;
@@ -3089,7 +3103,7 @@ function savePINSettings() {
 
 // ── GANTI PIN ──
 function openChangePin() {
-  const roleLabels = { admin:'Admin', ops:'Operasional', purchasing:'Purchasing' };
+  const roleLabels = { admin:'Admin', ops:'Operasional', purchasing:'Purchasing & Finance' };
   const el = g('change-pin-role-name');
   if(el) el.textContent = roleLabels[currentRole] || currentRole;
   g('change-pin-old').value = '';
@@ -3157,9 +3171,18 @@ function migrateLegacyPO(silent) {
   fbDb.ref(FB_PATH+'/po').once('value').then(snap=>{
     const rawVal = snap.val();
     if(!rawVal) { if(!silent) console.log('[PO Migration] Tidak ada data lama di path /po'); return; }
-    // Support both formats: {POS:[...]} or {POS: {0:..., 1:...}}
-    const legacyPOS = rawVal.POS || rawVal;
-    const legacy = toArr(legacyPOS).filter(p=>p&&p.id);
+    // Support semua format:
+    // 1. {POS: [...]}         → array di dalam key POS
+    // 2. {POS: {0:{}, 1:{}}} → object di dalam key POS (Firebase auto-convert array)
+    // 3. {id1:{}, id2:{}}    → langsung object per-id (format baru yang salah path)
+    // 4. [{}, {}]            → array langsung
+    let legacy = [];
+    if(rawVal.POS != null) {
+      legacy = toArr(rawVal.POS).filter(p=>p&&p.id);
+    } else {
+      // Coba baca langsung sebagai collection PO
+      legacy = toArr(rawVal).filter(p=>p&&p.id);
+    }
     if(!legacy.length) { if(!silent) console.log('[PO Migration] Data lama tidak memiliki PO valid'); return; }
     console.log('[PO Migration] Ditemukan '+legacy.length+' PO lama, memindahkan...');
     fbPoRef.once('value').then(cur=>{
@@ -3168,13 +3191,13 @@ function migrateLegacyPO(silent) {
       if(Object.keys(upd).length){
         fbPoRef.update(upd).then(()=>{
           console.log('[PO Migration] Berhasil memindahkan '+Object.keys(upd).length+' PO');
-          showToast('✓ '+Object.keys(upd).length+' PO lama berhasil dipindahkan');
-        });
+          showToast('✓ '+Object.keys(upd).length+' PO lama berhasil dipindahkan ke sistem baru');
+        }).catch(e=>console.warn('[PO Migration] Gagal update:',e));
       } else {
         if(!silent) showToast('ℹ Semua PO lama sudah ada di sistem baru');
       }
     });
-  }).catch(e=>console.warn('[PO Migration] Gagal:',e));
+  }).catch(e=>console.warn('[PO Migration] Gagal baca path /po:',e));
 }
 // Snapshot harian semua PO: dcr_management/v1/po_backup/{YYYY-MM-DD}
 // Dibuat sekali per hari oleh user pertama yang membuka aplikasi. Disimpan 60 hari terakhir.
